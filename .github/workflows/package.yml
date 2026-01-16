@@ -40,7 +40,6 @@ jobs:
     - name: Build with Maven
       shell: bash
       run: |
-        cd download-client
         mvn clean package -DskipTests -X
         mvn dependency:copy-dependencies -DoutputDirectory=target/libs
         cp target/*.jar target/libs/
@@ -49,7 +48,6 @@ jobs:
       if: matrix.os == 'windows'
       shell: pwsh
       run: |
-        cd download-client
         jpackage --type app-image `
           --name "FileTransferClient" `
           --input target/libs `
@@ -61,7 +59,6 @@ jobs:
     - name: Package (Linux)
       if: matrix.os == 'linux'
       run: |
-        cd download-client
         jpackage --type app-image \
           --name "FileTransferClient" \
           --input target/libs \
@@ -74,14 +71,14 @@ jobs:
       if: matrix.os == 'windows'
       shell: pwsh
       run: |
-        cd download-client/target/dist
-        Compress-Archive -Path FileTransferClient -DestinationPath ../../../FileTransferClient-Windows-${{ matrix.arch }}.zip
+        cd target/dist
+        Compress-Archive -Path FileTransferClient -DestinationPath ../../FileTransferClient-Windows-${{ matrix.arch }}.zip
 
     - name: Archive Production (Linux)
       if: matrix.os == 'linux'
       run: |
-        cd download-client/target/dist
-        zip -r ../../../FileTransferClient-Linux-${{ matrix.arch }}.zip FileTransferClient
+        cd target/dist
+        zip -r ../../FileTransferClient-Linux-${{ matrix.arch }}.zip FileTransferClient
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4

@@ -8,7 +8,7 @@ echo 正在启动客户端...
 echo.
 
 REM 设置使用Java 21
-set JAVA_HOME=C:\Users\admin\.qoder\extensions\redhat.java-1.51.0-win32-x64\jre\21.0.9-win32-x86_64
+set JAVA_HOME=D:\Program Files\Java\jdk-21
 set PATH=%JAVA_HOME%\bin;%PATH%
 
 echo 使用的Java版本:
