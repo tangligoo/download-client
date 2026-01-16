@@ -19,30 +19,34 @@ jobs:
           - os: linux
             arch: x64
             runner: ubuntu-latest
-          - os: windows
-            arch: arm64
-            runner: windows-latest # 交叉编译或使用特定 runner
           - os: linux
             arch: arm64
-            runner: ubuntu-24.04-arm # 使用 GitHub 官方原生 ARM 运行节点
+            runner: ubuntu-latest
 
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
+
+    - name: Set up QEMU (For Linux ARM64)
+      if: matrix.arch == 'arm64' && matrix.os == 'linux'
+      uses: docker/setup-qemu-action@v3
 
     - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
         java-version: '21'
         distribution: 'temurin'
+        architecture: ${{ matrix.arch == 'arm64' && 'arm64' || 'x64' }}
         cache: 'maven'
 
     - name: Build with Maven
       shell: bash
       run: |
-        mvn clean package -DskipTests -X
-        mvn dependency:copy-dependencies -DoutputDirectory=target/libs
-        cp target/*.jar target/libs/
+        mvn clean package -DskipTests
+        # 创建一个干净的输入目录，避免重复打包
+        mkdir -p target/input
+        mvn dependency:copy-dependencies -DoutputDirectory=target/input -DincludeScope=runtime
+        cp target/*.jar target/input/
 
     - name: Package (Windows)
       if: matrix.os == 'windows'
@@ -50,22 +54,24 @@ jobs:
       run: |
         jpackage --type app-image `
           --name "FileTransferClient" `
-          --input target/libs `
+          --input target/input `
           --main-jar file-transfer-client-1.0.0.jar `
           --main-class com.qoder.client.Launcher `
           --dest target/dist `
-          --vendor "Qoder"
+          --vendor "Qoder" `
+          --jlink-options "--strip-debug --no-man-pages --no-header-files --compress 2"
 
     - name: Package (Linux)
       if: matrix.os == 'linux'
       run: |
         jpackage --type app-image \
           --name "FileTransferClient" \
-          --input target/libs \
+          --input target/input \
           --main-jar file-transfer-client-1.0.0.jar \
           --main-class com.qoder.client.Launcher \
           --dest target/dist \
-          --vendor "Qoder"
+          --vendor "Qoder" \
+          --jlink-options "--strip-debug --no-man-pages --no-header-files --compress 2"
 
     - name: Archive Production (Windows)
       if: matrix.os == 'windows'
