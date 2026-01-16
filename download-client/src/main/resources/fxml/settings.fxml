@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.qoder.client.ui.SettingsController"
+      styleClass="settings-container"
+      spacing="20" prefWidth="550">
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+    
+    <Label text="设置" styleClass="settings-title, h2"/>
+    
+    <Separator/>
+    
+    <GridPane hgap="15" vgap="18">
+        <columnConstraints>
+            <ColumnConstraints minWidth="130" halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        
+        <Label text="服务器地址:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="serverHostField" GridPane.columnIndex="1" GridPane.rowIndex="0" 
+                   promptText="localhost or 192.168.1.100"/>
+        
+        <Label text="HTTP 端口:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="httpPortField" GridPane.columnIndex="1" GridPane.rowIndex="1" 
+                   promptText="8080" prefWidth="150"/>
+        
+        <Label text="TCP 端口:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="tcpPortField" GridPane.columnIndex="1" GridPane.rowIndex="2" 
+                   promptText="9090" prefWidth="150"/>
+        
+        <Label text="下载路径:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="downloadPathField" HBox.hgrow="ALWAYS"/>
+            <Button text="浏览..." styleClass="btn, btn-warning" onAction="#handleBrowse"/>
+        </HBox>
+        
+        <Label text="轮询间隔(秒):" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextField fx:id="pollIntervalField" GridPane.columnIndex="1" GridPane.rowIndex="4" 
+                   promptText="5" prefWidth="150"/>
+        
+        <Label text="AppKey:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField fx:id="appKeyField" styleClass="appkey-field" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+    </GridPane>
+    
+    <Separator/>
+    
+    <HBox spacing="12" alignment="CENTER_RIGHT">
+        <Button text="保存" styleClass="btn, btn-success" onAction="#handleSave" prefWidth="100" defaultButton="true"/>
+        <Button text="取消" styleClass="btn, btn-default" onAction="#handleCancel" prefWidth="100"/>
+    </HBox>
+    
+</VBox>

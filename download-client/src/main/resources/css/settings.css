@@ -1,0 +1,105 @@
+/* 全局样式 - 与BootstrapFX配合 */
+.root {
+    -fx-font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* 设置容器 - 增强BootstrapFX样式 */
+.settings-container {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 12, 0, 0, 3);
+    -fx-background-radius: 6px;
+}
+
+/* 标题样式 */
+.settings-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* 标签样式 */
+.settings-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #555;
+    -fx-font-weight: 500;
+}
+
+/* 输入框样式 - 覆盖BootstrapFX */
+.text-field {
+    -fx-padding: 10px 14px;
+    -fx-font-size: 14px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
+.text-field:focused {
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.4), 5, 0, 0, 0);
+}
+
+/* 按钮增强 - 配合BootstrapFX的btn类 */
+.btn {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10px 24px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 3, 0, 0, 1);
+}
+
+.btn:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 5, 0, 0, 2);
+    -fx-translate-y: -1px;
+}
+
+.btn:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0, 0, 1);
+    -fx-translate-y: 0px;
+}
+
+/* 分隔线样式 */
+.separator *.line {
+    -fx-border-color: #ecf0f1;
+    -fx-border-width: 1px 0 0 0;
+}
+
+/* GridPane行悬停效果 */
+.grid-row {
+    -fx-background-color: transparent;
+    -fx-padding: 5px 0;
+}
+
+.grid-row:hover {
+    -fx-background-color: #f8f9fa;
+}
+
+/* 提示文本样式 */
+.text-field > .text {
+    -fx-prompt-text-fill: #bdc3c7;
+}
+
+/* AppKey字段特殊样式 */
+.appkey-field {
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-font-size: 12px;
+    -fx-background-color: #ecf0f1;
+}
+
+/* 滚动条样式 */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #bdc3c7;
+    -fx-background-radius: 4px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #95a5a6;
+}
+
+/* 动画过渡 */
+.button,
+.text-field {
+    -fx-transition: all 0.2s ease;
+}

@@ -1,0 +1,84 @@
+name: Multi-Platform Build
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build for ${{ matrix.os }} (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows
+            arch: x64
+            runner: windows-latest
+          - os: linux
+            arch: x64
+            runner: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: 'maven'
+
+    - name: Build with Maven
+      shell: bash
+      run: |
+        cd download-client
+        mvn clean package -DskipTests
+        mvn dependency:copy-dependencies -DoutputDirectory=target/libs
+        cp target/*.jar target/libs/
+
+    - name: Package (Windows)
+      if: matrix.os == 'windows'
+      shell: pwsh
+      run: |
+        cd download-client
+        jpackage --type app-image `
+          --name "FileTransferClient" `
+          --input target/libs `
+          --main-jar file-transfer-client-1.0.0.jar `
+          --main-class com.qoder.client.Launcher `
+          --dest target/dist `
+          --vendor "Qoder"
+
+    - name: Package (Linux)
+      if: matrix.os == 'linux'
+      run: |
+        cd download-client
+        jpackage --type app-image \
+          --name "FileTransferClient" \
+          --input target/libs \
+          --main-jar file-transfer-client-1.0.0.jar \
+          --main-class com.qoder.client.Launcher \
+          --dest target/dist \
+          --vendor "Qoder"
+
+    - name: Archive Production (Windows)
+      if: matrix.os == 'windows'
+      shell: pwsh
+      run: |
+        cd download-client/target/dist
+        Compress-Archive -Path FileTransferClient -DestinationPath ../../../FileTransferClient-Windows-x64.zip
+
+    - name: Archive Production (Linux)
+      if: matrix.os == 'linux'
+      run: |
+        cd download-client/target/dist
+        zip -r ../../../FileTransferClient-Linux-x64.zip FileTransferClient
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: FileTransferClient-${{ matrix.os }}-${{ matrix.arch }}
+        path: "*.zip"

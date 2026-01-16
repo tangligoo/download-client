@@ -1,0 +1,138 @@
+package com.qoder.client.ui;
+
+import com.qoder.client.config.AppConfig;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
+
+public class SettingsController {
+    @FXML
+    private TextField serverHostField;
+    @FXML
+    private TextField httpPortField;
+    @FXML
+    private TextField tcpPortField;
+    @FXML
+    private TextField downloadPathField;
+    @FXML
+    private TextField pollIntervalField;
+    @FXML
+    private TextField appKeyField;
+    
+    private Stage stage;
+    
+    @FXML
+    public void initialize() {
+        AppConfig config = AppConfig.getInstance();
+        serverHostField.setText(config.getServerHost());
+        httpPortField.setText(String.valueOf(config.getServerHttpPort()));
+        tcpPortField.setText(String.valueOf(config.getServerTcpPort()));
+        downloadPathField.setText(config.getDownloadPath());
+        pollIntervalField.setText(String.valueOf(config.getPollInterval()));
+        appKeyField.setText(config.getAppKey());
+    }
+    
+    @FXML
+    private void handleBrowse() {
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("选择下载目录");
+        
+        File currentDir = new File(downloadPathField.getText());
+        if (currentDir.exists()) {
+            chooser.setInitialDirectory(currentDir);
+        }
+        
+        File selectedDir = chooser.showDialog(stage);
+        if (selectedDir != null) {
+            downloadPathField.setText(selectedDir.getAbsolutePath());
+        }
+    }
+    
+    @FXML
+    private void handleSave() {
+        try {
+            String serverHost = serverHostField.getText().trim();
+            int httpPort = Integer.parseInt(httpPortField.getText().trim());
+            int tcpPort = Integer.parseInt(tcpPortField.getText().trim());
+            String downloadPath = downloadPathField.getText().trim();
+            int pollInterval = Integer.parseInt(pollIntervalField.getText().trim());
+            String appKey = appKeyField.getText().trim();
+            
+            if (serverHost.isEmpty()) {
+                showError("服务器地址不能为空");
+                return;
+            }
+            
+            if (httpPort < 1 || httpPort > 65535) {
+                showError("HTTP端口必须在1到65535之间");
+                return;
+            }
+            
+            if (tcpPort < 1 || tcpPort > 65535) {
+                showError("TCP端口必须在1到65535之间");
+                return;
+            }
+            
+            if (downloadPath.isEmpty()) {
+                showError("下载路径不能为空");
+                return;
+            }
+            
+            if (pollInterval < 1) {
+                showError("轮询间隔必须大于0");
+                return;
+            }
+            
+            if (appKey.isEmpty()) {
+                showError("AppKey不能为空");
+                return;
+            }
+            
+            AppConfig config = AppConfig.getInstance();
+            config.setServerHost(serverHost);
+            config.setServerHttpPort(httpPort);
+            config.setServerTcpPort(tcpPort);
+            config.setDownloadPath(downloadPath);
+            config.setPollInterval(pollInterval);
+            config.setAppKey(appKey);
+            
+            showInfo("设置保存成功");
+            if (stage != null) {
+                stage.close();
+            }
+        } catch (NumberFormatException e) {
+            showError("端口和间隔必须是有效的数字");
+        }
+    }
+    
+    @FXML
+    private void handleCancel() {
+        if (stage != null) {
+            stage.close();
+        }
+    }
+    
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+    
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("错误");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    
+    private void showInfo(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("提示");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}
