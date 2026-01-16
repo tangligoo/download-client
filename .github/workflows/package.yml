@@ -35,7 +35,7 @@ jobs:
       shell: bash
       run: |
         cd download-client
-        mvn clean package -DskipTests -e
+        mvn clean package -DskipTests -X
         mvn dependency:copy-dependencies -DoutputDirectory=target/libs
         cp target/*.jar target/libs/
 
