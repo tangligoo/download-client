@@ -19,6 +19,12 @@ jobs:
           - os: linux
             arch: x64
             runner: ubuntu-latest
+          - os: windows
+            arch: arm64
+            runner: windows-latest # 交叉编译或使用特定 runner
+          - os: linux
+            arch: arm64
+            runner: ubuntu-24.04-arm # 使用 GitHub 官方原生 ARM 运行节点
 
     steps:
     - name: Checkout Code
@@ -69,13 +75,13 @@ jobs:
       shell: pwsh
       run: |
         cd download-client/target/dist
-        Compress-Archive -Path FileTransferClient -DestinationPath ../../../FileTransferClient-Windows-x64.zip
+        Compress-Archive -Path FileTransferClient -DestinationPath ../../../FileTransferClient-Windows-${{ matrix.arch }}.zip
 
     - name: Archive Production (Linux)
       if: matrix.os == 'linux'
       run: |
         cd download-client/target/dist
-        zip -r ../../../FileTransferClient-Linux-x64.zip FileTransferClient
+        zip -r ../../../FileTransferClient-Linux-${{ matrix.arch }}.zip FileTransferClient
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
