@@ -68,9 +68,6 @@
                 <configuration>
                     <source>21</source>
                     <target>21</target>
-                    <!-- 强制指定编译器路径 -->
-                    <executable>D:\Program Files\Java\jdk-21\bin\javac</executable>
-                    <fork>true</fork>
                 </configuration>
             </plugin>
             <plugin>
