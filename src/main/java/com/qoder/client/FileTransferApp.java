@@ -15,6 +15,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
@@ -28,6 +30,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class FileTransferApp extends Application {
+    private static final Logger logger = LoggerFactory.getLogger(FileTransferApp.class);
     private Stage primaryStage;
     private Stage transferStage;
     private TransferListController transferController;
@@ -167,12 +170,18 @@ public class FileTransferApp extends Application {
     private void startPollingTask() {
         AppConfig config = AppConfig.getInstance();
         pollTimer = new Timer(true);
+        int intervalSeconds = config.getPollInterval();
+        logger.info("启动文件轮询任务，间隔: {} 秒", intervalSeconds);
+        
         pollTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 try {
+                    logger.debug("开始轮询文件列表...");
                     List<FileInfo> fileList = fileListService.fetchFileList();
+                    
                     if (fileList != null && !fileList.isEmpty()) {
+                        logger.info("轮询到 {} 个文件", fileList.size());
                         Platform.runLater(() -> {
                             // 只有在有新任务时才自动打开窗口
                             if (transferController != null) {
@@ -180,24 +189,30 @@ public class FileTransferApp extends Application {
                                 transferController.addDownloadTasks(fileList);
                                 int afterSize = transferController.getTasks().size();
                                 
+                                logger.debug("任务数量: {} -> {}", beforeSize, afterSize);
+                                
                                 // 如果添加了新任务且窗口未显示，则打开窗口
                                 if (afterSize > beforeSize && (transferStage == null || !transferStage.isShowing())) {
+                                    logger.info("检测到新任务，打开传输列表窗口");
                                     showTransferList();
                                 }
                             } else {
                                 // 首次有文件时才打开
+                                logger.info("首次检测到文件，打开传输列表窗口");
                                 showTransferList();
                                 if (transferController != null) {
                                     transferController.addDownloadTasks(fileList);
                                 }
                             }
                         });
+                    } else {
+                        logger.debug("暂无文件");
                     }
                 } catch (Exception e) {
-                    System.err.println("轮询文件列表失败: " + e.getMessage());
+                    logger.error("轮询文件列表失败", e);
                 }
             }
-        }, 1000, config.getPollInterval() * 1000L);
+        }, 1000, intervalSeconds * 1000L);
     }
     
     private void stopPollingTask() {

@@ -21,6 +21,8 @@ public class SettingsController {
     @FXML
     private TextField pollIntervalField;
     @FXML
+    private TextField maxConcurrentField;
+    @FXML
     private TextField appKeyField;
     
     private Stage stage;
@@ -33,6 +35,7 @@ public class SettingsController {
         tcpPortField.setText(String.valueOf(config.getServerTcpPort()));
         downloadPathField.setText(config.getDownloadPath());
         pollIntervalField.setText(String.valueOf(config.getPollInterval()));
+        maxConcurrentField.setText(String.valueOf(config.getMaxConcurrentDownloads()));
         appKeyField.setText(config.getAppKey());
     }
     
@@ -60,6 +63,7 @@ public class SettingsController {
             int tcpPort = Integer.parseInt(tcpPortField.getText().trim());
             String downloadPath = downloadPathField.getText().trim();
             int pollInterval = Integer.parseInt(pollIntervalField.getText().trim());
+            int maxConcurrent = Integer.parseInt(maxConcurrentField.getText().trim());
             String appKey = appKeyField.getText().trim();
             
             if (serverHost.isEmpty()) {
@@ -87,6 +91,11 @@ public class SettingsController {
                 return;
             }
             
+            if (maxConcurrent < 1 || maxConcurrent > 10) {
+                showError("最大并发下载数必须在1到10之间");
+                return;
+            }
+            
             if (appKey.isEmpty()) {
                 showError("AppKey不能为空");
                 return;
@@ -98,6 +107,7 @@ public class SettingsController {
             config.setServerTcpPort(tcpPort);
             config.setDownloadPath(downloadPath);
             config.setPollInterval(pollInterval);
+            config.setMaxConcurrentDownloads(maxConcurrent);
             config.setAppKey(appKey);
             
             showInfo("设置保存成功");
@@ -105,7 +115,7 @@ public class SettingsController {
                 stage.close();
             }
         } catch (NumberFormatException e) {
-            showError("端口和间隔必须是有效的数字");
+            showError("端口、间隔和并发数必须是有效的数字");
         }
     }
     

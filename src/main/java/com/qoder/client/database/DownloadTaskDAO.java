@@ -15,31 +15,33 @@ public class DownloadTaskDAO {
     
     public void saveTask(DownloadTask task) {
         String sql = "INSERT OR REPLACE INTO download_tasks " +
-                     "(file_id, file_name, file_path, file_size, downloaded_size, save_path, status, updated_at) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+                     "(task_id, file_id, file_name, file_path, file_size, downloaded_size, save_path, status, created_at, updated_at) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
         
         try (PreparedStatement pstmt = dbManager.getConnection().prepareStatement(sql)) {
-            pstmt.setString(1, task.getFileId());
-            pstmt.setString(2, task.getFileName());
-            pstmt.setString(3, task.getFilePath());
-            pstmt.setLong(4, task.getFileSize());
-            pstmt.setLong(5, task.getDownloadedSize());
-            pstmt.setString(6, task.getSavePath());
-            pstmt.setString(7, task.getStatus());
+            pstmt.setString(1, task.getTaskId());
+            pstmt.setString(2, task.getFileId());
+            pstmt.setString(3, task.getFileName());
+            pstmt.setString(4, task.getFilePath());
+            pstmt.setLong(5, task.getFileSize());
+            pstmt.setLong(6, task.getDownloadedSize());
+            pstmt.setString(7, task.getSavePath());
+            pstmt.setString(8, task.getStatus());
+            pstmt.setLong(9, Long.parseLong(task.getTaskId()));  // created_at 使用 taskId 的时间戳
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Failed to save task: " + e.getMessage());
         }
     }
     
-    public void updateTaskProgress(String filePath, long downloadedSize, String status) {
+    public void updateTaskProgress(String taskId, long downloadedSize, String status) {
         String sql = "UPDATE download_tasks SET downloaded_size = ?, status = ?, updated_at = CURRENT_TIMESTAMP " +
-                     "WHERE file_path = ?";
+                     "WHERE task_id = ?";
         
         try (PreparedStatement pstmt = dbManager.getConnection().prepareStatement(sql)) {
             pstmt.setLong(1, downloadedSize);
             pstmt.setString(2, status);
-            pstmt.setString(3, filePath);
+            pstmt.setString(3, taskId);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Failed to update task: " + e.getMessage());
@@ -76,6 +78,8 @@ public class DownloadTaskDAO {
                     );
                 }
                 
+                // 设置 taskId
+                task.setTaskId(rs.getString("task_id"));
                 task.setDownloadedSize(rs.getLong("downloaded_size"));
                 
                 // 设置状态
@@ -222,11 +226,11 @@ public class DownloadTaskDAO {
         return null;
     }
     
-    public void deleteTask(String filePath) {
-        String sql = "DELETE FROM download_tasks WHERE file_path = ?";
+    public void deleteTask(String taskId) {
+        String sql = "DELETE FROM download_tasks WHERE task_id = ?";
         
         try (PreparedStatement pstmt = dbManager.getConnection().prepareStatement(sql)) {
-            pstmt.setString(1, filePath);
+            pstmt.setString(1, taskId);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Failed to delete task: " + e.getMessage());

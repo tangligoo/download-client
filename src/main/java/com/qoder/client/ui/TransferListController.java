@@ -12,11 +12,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ProgressBarTableCell;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransferListController {
+    private static final Logger logger = LoggerFactory.getLogger(TransferListController.class);
     @FXML
     private TableView<DownloadTask> taskTableView;
     @FXML
@@ -129,14 +133,38 @@ public class TransferListController {
         for (DownloadTask task : tasks) {
             if (task.getStatus().equals(DownloadTask.Status.PAUSED.getText())) {
                 task.setPaused(false);
+                // 重新启动下载线程
+                startDownload(task);
             }
         }
     }
 
     private void cancelAllTasks() {
-        for (DownloadTask task : tasks) {
-            task.setCancelled(true);
+        logger.info("取消所有任务");
+        // 只取消正在进行中的任务（DOWNLOADING/WAITING/PAUSED），不影响已完成/失败的任务
+        List<DownloadTask> tasksToCancel = tasks.stream()
+                .filter(task -> {
+                    String status = task.getStatus();
+                    return status.equals(DownloadTask.Status.DOWNLOADING.getText()) ||
+                           status.equals(DownloadTask.Status.WAITING.getText()) ||
+                           status.equals(DownloadTask.Status.PAUSED.getText());
+                })
+                .toList();
+        
+        logger.info("取消 {} 个正在进行的任务", tasksToCancel.size());
+        
+        for (DownloadTask task : tasksToCancel) {
+            // 强制取消下载（关闭 Socket）
+            downloadService.cancelDownload(task);
         }
+        
+        // 立即刷新 UI 和更新数据库
+        Platform.runLater(() -> {
+            taskTableView.refresh();
+            for (DownloadTask task : tasksToCancel) {
+                taskDAO.updateTaskProgress(task.getTaskId(), task.getDownloadedSize(), task.getStatus());
+            }
+        });
     }
 
     private void removeAllTasks() {
@@ -157,75 +185,114 @@ public class TransferListController {
 
         for (DownloadTask task : toRemove) {
             tasks.remove(task);
-            taskDAO.deleteTask(task.getFilePath());
+            taskDAO.deleteTask(task.getTaskId());
         }
     }
     
     private void loadTasksFromDatabase() {
         List<DownloadTask> savedTasks = taskDAO.getAllTasks();
+        logger.info("从数据库加载 {} 个任务", savedTasks.size());
+        
         for (DownloadTask task : savedTasks) {
             tasks.add(task);
-            // 如果任务未完成，重新开始下载
-            if (task.getStatus().equals(DownloadTask.Status.DOWNLOADING.getText()) ||
-                task.getStatus().equals(DownloadTask.Status.PAUSED.getText())) {
+            String status = task.getStatus();
+            logger.debug("加载任务: fileName={}, status={}", task.getFileName(), status);
+            
+            // 如果任务未完成，不自动开始下载，等待用户手动继续
+            if (status.equals(DownloadTask.Status.DOWNLOADING.getText())) {
+                // 正在下载的任务改为暂停状态
                 task.setStatus(DownloadTask.Status.PAUSED);
-                startDownload(task);
+                logger.info("任务设置为暂停状态: {}", task.getFileName());
             }
+            // 不再自动启动下载，由用户手动点击“继续”
         }
     }
     
     public void addDownloadTasks(List<FileInfo> fileList) {
+        logger.info("添加下载任务: {} 个文件", fileList.size());
         AppConfig config = AppConfig.getInstance();
+        int addedCount = 0;
+        List<DownloadTask> newTasks = new ArrayList<>();
+        
+        // 第一步：批量创建任务，不立即开始下载
         for (FileInfo fileInfo : fileList) {
             // 使用fileId作为唯一标识
             String identifier = fileInfo.getFileId() != null ? fileInfo.getFileId() : fileInfo.getFilePath();
+            logger.debug("处理文件: {}, fileId={}, fileSize={}", fileInfo.getFileName(), identifier, fileInfo.getFileSize());
             
-            // 检查是否已存在（通过fileId或filePath）
-            boolean exists = tasks.stream()
+            // 检查是否有正在处理的任务（仅检查 DOWNLOADING/PAUSED/WAITING 状态）
+            boolean isProcessing = tasks.stream()
                     .anyMatch(task -> {
+                        // 匹配 fileId
+                        boolean idMatch = false;
                         if (task.getFileId() != null && fileInfo.getFileId() != null) {
-                            return task.getFileId().equals(fileInfo.getFileId());
+                            idMatch = task.getFileId().equals(fileInfo.getFileId());
+                        } else {
+                            idMatch = task.getFilePath().equals(identifier);
                         }
-                        return task.getFilePath().equals(identifier);
+                        
+                        // 只在状态为正在处理时返回 true
+                        if (idMatch) {
+                            String status = task.getStatus();
+                            return status.equals(DownloadTask.Status.DOWNLOADING.getText()) ||
+                                   status.equals(DownloadTask.Status.PAUSED.getText()) ||
+                                   status.equals(DownloadTask.Status.WAITING.getText());
+                        }
+                        return false;
                     });
-                    
-            if (!exists) {
-                String savePath = config.getDownloadPath() + File.separator + fileInfo.getFileName();
-                DownloadTask task;
-                
-                // 如果有fileId，使用fileId构造函数
-                if (fileInfo.getFileId() != null) {
-                    task = new DownloadTask(
-                            fileInfo.getFileId(),
-                            fileInfo.getFileName(),
-                            fileInfo.getFileSize(),
-                            savePath,
-                            true  // useFileId = true
-                    );
-                } else {
-                    // 兼容旧版本，使用filePath
-                    task = new DownloadTask(
-                            fileInfo.getFileName(),
-                            fileInfo.getFilePath(),
-                            fileInfo.getFileSize(),
-                            savePath
-                    );
-                }
-                
-                tasks.add(task);
-                taskDAO.saveTask(task); // 保存到数据库
-                startDownload(task);
+            
+            // 如果正在处理，跳过
+            if (isProcessing) {
+                logger.debug("文件正在处理中，跳过: {}", identifier);
+                continue;
             }
+            
+            // 已完成/已取消/失败的任务保留，新文件作为新任务添加
+            logger.info("添加新下载任务: fileName={}, fileId={}", fileInfo.getFileName(), identifier);
+            
+            // 添加新任务
+            String savePath = config.getDownloadPath() + File.separator + fileInfo.getFileName();
+            DownloadTask task;
+            
+            // 如果有fileId，使用fileId构造函数
+            if (fileInfo.getFileId() != null) {
+                task = new DownloadTask(
+                        fileInfo.getFileId(),
+                        fileInfo.getFileName(),
+                        fileInfo.getFileSize(),
+                        savePath,
+                        true  // useFileId = true
+                );
+            } else {
+                // 兼容旧版本，使用filePath
+                task = new DownloadTask(
+                        fileInfo.getFileName(),
+                        fileInfo.getFilePath(),
+                        fileInfo.getFileSize(),
+                        savePath
+                );
+            }
+            
+            tasks.add(task);
+            taskDAO.saveTask(task); // 保存到数据库
+            newTasks.add(task);
+            addedCount++;
         }
+        
+        logger.info("实际添加了 {} 个新任务", addedCount);
+        
+        // 第二步：根据并发控制开始下载
+        startPendingDownloads();
     }
     
     private void startDownload(DownloadTask task) {
+        logger.info("开始下载: fileName={}, fileId={}, fileSize={}", task.getFileName(), task.getFileId(), task.getFileSize());
         downloadService.downloadFile(task, new FileDownloadService.DownloadProgressListener() {
             @Override
             public void onProgress(DownloadTask task) {
                 Platform.runLater(() -> {
                     taskTableView.refresh();
-                    taskDAO.updateTaskProgress(task.getFilePath(), task.getDownloadedSize(), task.getStatus());
+                    taskDAO.updateTaskProgress(task.getTaskId(), task.getDownloadedSize(), task.getStatus());
                 });
             }
             
@@ -233,7 +300,9 @@ public class TransferListController {
             public void onCompleted(DownloadTask task) {
                 Platform.runLater(() -> {
                     taskTableView.refresh();
-                    taskDAO.updateTaskProgress(task.getFilePath(), task.getDownloadedSize(), task.getStatus());
+                    taskDAO.updateTaskProgress(task.getTaskId(), task.getDownloadedSize(), task.getStatus());
+                    // 下载完成后，尝试启动下一个等待中的任务
+                    startPendingDownloads();
                 });
             }
             
@@ -241,17 +310,60 @@ public class TransferListController {
             public void onError(DownloadTask task, Exception e) {
                 Platform.runLater(() -> {
                     taskTableView.refresh();
-                    taskDAO.updateTaskProgress(task.getFilePath(), task.getDownloadedSize(), task.getStatus());
+                    taskDAO.updateTaskProgress(task.getTaskId(), task.getDownloadedSize(), task.getStatus());
                     showError("下载失败", task.getFileName() + " 下载失败: " + e.getMessage());
+                    // 错误后，尝试启动下一个等待中的任务
+                    startPendingDownloads();
                 });
             }
         });
     }
     
+    /**
+     * 启动等待中的下载任务（根据并发控制）
+     */
+    private void startPendingDownloads() {
+        AppConfig config = AppConfig.getInstance();
+        int maxConcurrent = config.getMaxConcurrentDownloads();
+        
+        // 统计当前正在下载的任务数
+        long downloadingCount = tasks.stream()
+                .filter(task -> task.getStatus().equals(DownloadTask.Status.DOWNLOADING.getText()))
+                .count();
+        
+        logger.debug("当前下载中: {} 个, 最大并发: {}", downloadingCount, maxConcurrent);
+        
+        // 如果已达到最大并发数，返回
+        if (downloadingCount >= maxConcurrent) {
+            logger.debug("已达到最大并发数，等待中...");
+            return;
+        }
+        
+        // 找出所有等待中的任务
+        List<DownloadTask> waitingTasks = tasks.stream()
+                .filter(task -> task.getStatus().equals(DownloadTask.Status.WAITING.getText()))
+                .limit(maxConcurrent - downloadingCount)  // 只启动需要的数量
+                .toList();
+        
+        logger.info("启动 {} 个等待中的任务", waitingTasks.size());
+        
+        // 启动等待中的任务
+        for (DownloadTask task : waitingTasks) {
+            startDownload(task);
+        }
+    }
+    
     private void pauseSelectedTask() {
         DownloadTask task = taskTableView.getSelectionModel().getSelectedItem();
-        if (task != null && task.getStatus().equals(DownloadTask.Status.DOWNLOADING.getText())) {
-            task.setPaused(true);
+        if (task != null) {
+            String status = task.getStatus();
+            logger.debug("暂停任务: fileName={}, currentStatus={}", task.getFileName(), status);
+            
+            if (status.equals(DownloadTask.Status.DOWNLOADING.getText()) ||
+                status.equals(DownloadTask.Status.WAITING.getText())) {
+                task.setPaused(true);
+                logger.info("任务已暂停: {}", task.getFileName());
+            }
         }
     }
     
@@ -259,13 +371,23 @@ public class TransferListController {
         DownloadTask task = taskTableView.getSelectionModel().getSelectedItem();
         if (task != null && task.getStatus().equals(DownloadTask.Status.PAUSED.getText())) {
             task.setPaused(false);
+            // 重新启动下载线程
+            startDownload(task);
         }
     }
     
     private void cancelSelectedTask() {
         DownloadTask task = taskTableView.getSelectionModel().getSelectedItem();
         if (task != null) {
-            task.setCancelled(true);
+            logger.info("取消任务: fileName={}, status={}", task.getFileName(), task.getStatus());
+            // 强制取消下载（关闭 Socket）
+            downloadService.cancelDownload(task);
+            
+            // 立即刷新 UI 和更新数据库
+            Platform.runLater(() -> {
+                taskTableView.refresh();
+                taskDAO.updateTaskProgress(task.getTaskId(), task.getDownloadedSize(), task.getStatus());
+            });
         }
     }
     
@@ -277,7 +399,7 @@ public class TransferListController {
                 status.equals(DownloadTask.Status.FAILED.getText()) ||
                 status.equals(DownloadTask.Status.CANCELLED.getText())) {
                 tasks.remove(task);
-                taskDAO.deleteTask(task.getFilePath()); // 从数据库删除
+                taskDAO.deleteTask(task.getTaskId()); // 从数据库删除
             } else {
                 showError("无法删除", "请先取消正在运行的任务");
             }

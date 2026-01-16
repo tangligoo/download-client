@@ -8,9 +8,9 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.qoder.client.ui.SettingsController"
       styleClass="settings-container"
-      spacing="20" prefWidth="550">
+      spacing="12" prefWidth="550">
     <padding>
-        <Insets top="25" right="25" bottom="25" left="25"/>
+        <Insets top="15" right="25" bottom="20" left="25"/>
     </padding>
     
     <Label text="设置" styleClass="settings-title, h2"/>
@@ -45,8 +45,12 @@
         <TextField fx:id="pollIntervalField" GridPane.columnIndex="1" GridPane.rowIndex="4" 
                    promptText="5" prefWidth="150"/>
         
-        <Label text="AppKey:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <TextField fx:id="appKeyField" styleClass="appkey-field" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+        <Label text="最大并发下载数:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField fx:id="maxConcurrentField" GridPane.columnIndex="1" GridPane.rowIndex="5" 
+                   promptText="3" prefWidth="150"/>
+        
+        <Label text="AppKey:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+        <TextField fx:id="appKeyField" styleClass="appkey-field" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
     </GridPane>
     
     <Separator/>

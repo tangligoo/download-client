@@ -90,12 +90,41 @@ X-App-Key: {appKey}
 - 默认端口：`9090`
 - 可在客户端设置中修改
 
-### 协议格式
+### 协议格式（简化版）
 
 #### 1. 客户端请求
+
+**二进制协议包结构**：
+
 ```
-格式：appKey|fileId|startPosition
-示例：abc123xyz|file_123456|0
+字段                  长度        说明
+-------------------------------------------
+命令标识 (Command)    2字节       0x20 0x20
+数据长度 (DataLen)    4字节       数据内容的字节长度（大端序）
+数据内容 (Data)       可变        UTF-8编码的字符串
+```
+
+**数据内容格式**（UTF-8字符串）：
+```
+appKey|fileId|startPosition
+```
+
+**完整请求示例**（Java代码）：
+```java
+// 构建数据内容
+String requestData = appKey + "|" + fileId + "|" + startPosition;
+byte[] dataBytes = requestData.getBytes(StandardCharsets.UTF_8);
+
+// 构建协议包
+byte[] packet = BytesDecimalismUtils.merge(
+    new byte[]{(byte) 0x20, (byte) 0x20},              // 命令标识
+    BytesDecimalismUtils.intTo4Bytes(dataBytes.length), // 数据长度
+    dataBytes                                           // 数据内容
+);
+
+// 发送
+outputStream.write(packet);
+outputStream.flush();
 ```
 
 **字段说明**：
@@ -237,12 +266,31 @@ public class TcpDownloadServer {
     }
     
     private void handleClient(Socket socket) {
-        try (DataInputStream in = new DataInputStream(socket.getInputStream());
+        try (InputStream in = socket.getInputStream();
              DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
             
-            // 读取请求：appKey|fileId|startPosition
-            String request = in.readUTF();
-            String[] parts = request.split("\\|");
+            // 读取命令标识（2字节）
+            byte[] command = new byte[2];
+            in.read(command);
+            
+            // 验证命令标识
+            if (command[0] != (byte) 0x20 || command[1] != (byte) 0x20) {
+                out.writeUTF("ERROR:Invalid command");
+                return;
+            }
+            
+            // 读取数据长度（4字节）
+            byte[] lenBytes = new byte[4];
+            in.read(lenBytes);
+            int dataLength = ByteBuffer.wrap(lenBytes).getInt();
+            
+            // 读取数据内容
+            byte[] dataBytes = new byte[dataLength];
+            in.read(dataBytes);
+            String requestData = new String(dataBytes, StandardCharsets.UTF_8);
+            
+            // 解析请求：appKey|fileId|startPosition
+            String[] parts = requestData.split("\\|");
             
             if (parts.length != 3) {
                 out.writeUTF("ERROR:Invalid request format");

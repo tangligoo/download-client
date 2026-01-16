@@ -56,39 +56,82 @@ public class DatabaseManager {
         // 为config表创建索引
         stmt.execute("CREATE INDEX IF NOT EXISTS idx_config_key ON config(key)");
         
-        // 创建下载任务表
+        // 创建下载任务表（新版本：使用时间戳作为主键）
         stmt.execute(
-            "CREATE TABLE IF NOT EXISTS download_tasks (" +
-            "    id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "    file_id TEXT," +
-            "    file_name TEXT NOT NULL," +
-            "    file_path TEXT NOT NULL," +
-            "    file_size INTEGER NOT NULL," +
-            "    downloaded_size INTEGER DEFAULT 0," +
-            "    save_path TEXT NOT NULL," +
-            "    status TEXT NOT NULL," +
-            "    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
-            "    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
-            "    UNIQUE(file_path)" +
-            ")"
+            "CREATE TABLE IF NOT EXISTS download_tasks ("
+            + "    task_id TEXT PRIMARY KEY,"  // 使用时间戳作为主键
+            + "    file_id TEXT,"
+            + "    file_name TEXT NOT NULL,"
+            + "    file_path TEXT NOT NULL,"
+            + "    file_size INTEGER NOT NULL,"
+            + "    downloaded_size INTEGER DEFAULT 0,"
+            + "    save_path TEXT NOT NULL,"
+            + "    status TEXT NOT NULL,"
+            + "    created_at INTEGER NOT NULL,"  // 创建时间（毫秒时间戳）
+            + "    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+            + ")"
         );
         
-        // 迁移：如果表已存在但没有file_id列，则添加
+        // 迁移：检查旧表结构并升级
         try {
             ResultSet rs = stmt.executeQuery("PRAGMA table_info(download_tasks)");
-            boolean hasFileId = false;
+            boolean hasTaskId = false;
+            boolean hasCreatedAtInteger = false;
+            
             while (rs.next()) {
-                if ("file_id".equals(rs.getString("name"))) {
-                    hasFileId = true;
-                    break;
+                String columnName = rs.getString("name");
+                String columnType = rs.getString("type");
+                
+                if ("task_id".equals(columnName)) {
+                    hasTaskId = true;
+                }
+                if ("created_at".equals(columnName) && "INTEGER".equals(columnType)) {
+                    hasCreatedAtInteger = true;
                 }
             }
-            if (!hasFileId) {
-                System.out.println("Migrating database: adding file_id column...");
-                stmt.execute("ALTER TABLE download_tasks ADD COLUMN file_id TEXT");
+            
+            // 如果旧表结构不同，需要迁移
+            if (!hasTaskId || !hasCreatedAtInteger) {
+                System.out.println("检测到旧的表结构，开始迁移数据库...");
+                
+                // 备份旧表
+                stmt.execute("ALTER TABLE download_tasks RENAME TO download_tasks_old");
+                
+                // 创建新表（使用时间戳主键）
+                stmt.execute(
+                    "CREATE TABLE download_tasks ("
+                    + "    task_id TEXT PRIMARY KEY,"
+                    + "    file_id TEXT,"
+                    + "    file_name TEXT NOT NULL,"
+                    + "    file_path TEXT NOT NULL,"
+                    + "    file_size INTEGER NOT NULL,"
+                    + "    downloaded_size INTEGER DEFAULT 0,"
+                    + "    save_path TEXT NOT NULL,"
+                    + "    status TEXT NOT NULL,"
+                    + "    created_at INTEGER NOT NULL,"
+                    + "    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+                    + ")"
+                );
+                
+                // 复制数据（生成 task_id）
+                stmt.execute(
+                    "INSERT INTO download_tasks (task_id, file_id, file_name, file_path, file_size, downloaded_size, save_path, status, created_at, updated_at) "
+                    + "SELECT "
+                    + "    CAST((julianday(COALESCE(created_at, CURRENT_TIMESTAMP)) - 2440587.5) * 86400000 AS INTEGER) || '_' || id AS task_id, "  // 生成时间戳_id 作为 task_id
+                    + "    file_id, file_name, file_path, file_size, downloaded_size, save_path, status, "
+                    + "    CAST((julianday(COALESCE(created_at, CURRENT_TIMESTAMP)) - 2440587.5) * 86400000 AS INTEGER) AS created_at, "
+                    + "    updated_at "
+                    + "FROM download_tasks_old"
+                );
+                
+                // 删除旧表
+                stmt.execute("DROP TABLE download_tasks_old");
+                
+                System.out.println("数据库迁移完成，已使用时间戳主键");
             }
         } catch (SQLException e) {
-            System.err.println("Migration check failed: " + e.getMessage());
+            System.err.println("数据库迁移失败: " + e.getMessage());
+            e.printStackTrace();
         }
         
         // 为下载任务表创建索引

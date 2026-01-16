@@ -13,10 +13,11 @@ public class AppConfig {
     private static final String APP_KEY_FILE = CONFIG_DIR + File.separator + "appkey.txt";
     
     private String serverHost = "localhost";
-    private int serverHttpPort = 8080;
-    private int serverTcpPort = 9090;
+    private int serverHttpPort = 8522;
+    private int serverTcpPort = 9122;
     private String downloadPath = System.getProperty("user.home") + File.separator + "Downloads";
     private int pollInterval = 5; // 秒
+    private int maxConcurrentDownloads = 3; // 最大同时下载数
     private String appKey;
     
     private static AppConfig instance;
@@ -62,6 +63,7 @@ public class AppConfig {
         serverTcpPort = configDAO.getIntConfig("serverTcpPort", serverTcpPort);
         downloadPath = configDAO.getConfig("downloadPath", downloadPath);
         pollInterval = configDAO.getIntConfig("pollInterval", pollInterval);
+        maxConcurrentDownloads = configDAO.getIntConfig("maxConcurrentDownloads", maxConcurrentDownloads);
     }
     
     private void generateAndSaveAppKey() {
@@ -140,6 +142,15 @@ public class AppConfig {
     public void setPollInterval(int pollInterval) {
         this.pollInterval = pollInterval;
         configDAO.saveConfig("pollInterval", String.valueOf(pollInterval));
+    }
+    
+    public int getMaxConcurrentDownloads() {
+        return maxConcurrentDownloads;
+    }
+    
+    public void setMaxConcurrentDownloads(int maxConcurrentDownloads) {
+        this.maxConcurrentDownloads = maxConcurrentDownloads;
+        configDAO.saveConfig("maxConcurrentDownloads", String.valueOf(maxConcurrentDownloads));
     }
     
     public String getAppKey() {

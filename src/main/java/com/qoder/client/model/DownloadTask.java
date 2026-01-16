@@ -3,6 +3,7 @@ package com.qoder.client.model;
 import javafx.beans.property.*;
 
 public class DownloadTask {
+    private String taskId;            // 任务唯一ID（时间戳）
     private final StringProperty fileName;
     private final LongProperty fileSize;
     private final LongProperty downloadedSize;
@@ -35,6 +36,7 @@ public class DownloadTask {
     }
 
     public DownloadTask(String fileName, String filePath, long fileSize, String savePath) {
+        this.taskId = String.valueOf(System.currentTimeMillis());  // 生成时间戳作为 taskId
         this.fileName = new SimpleStringProperty(fileName);
         this.filePath = filePath;
         this.fileSize = new SimpleLongProperty(fileSize);
@@ -49,6 +51,7 @@ public class DownloadTask {
     
     // 新构造函数：支持fileId（通过布尔值区分）
     public DownloadTask(String fileId, String fileName, long fileSize, String savePath, boolean useFileId) {
+        this.taskId = String.valueOf(System.currentTimeMillis());  // 生成时间戳作为 taskId
         if (useFileId) {
             this.fileId = fileId;
             this.filePath = fileId; // 兼容旧代码
@@ -64,6 +67,14 @@ public class DownloadTask {
         this.savePath = savePath;
         this.paused = false;
         this.cancelled = false;
+    }
+
+    public String getTaskId() {
+        return taskId;
+    }
+    
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
     }
 
     public String getFileName() {
