@@ -29368,3 +29368,778 @@ java.io.FileNotFoundException: C:\Users\admin\Downloads\electron (拒绝访问�
 2026-01-19 16:11:23.228 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
 2026-01-19 16:11:23.228 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
 2026-01-19 16:11:24.793 [JavaFX Application Thread] INFO  com.ztxa.client.service.FileListService - 文件列表服务已关闭
+2026-01-19 16:13:17.744 [IPC-Server] INFO  com.ztxa.client.service.IpcService - IPC 服务端已启动，监听端口: 9123
+2026-01-19 16:13:17.981 [JavaFX Application Thread] INFO  com.ztxa.client.service.FileListService - 文件列表服务已初始化
+2026-01-19 16:13:17.982 [JavaFX Application Thread] INFO  com.ztxa.client.FileTransferApp - 启动文件轮询任务，间隔: 5 秒
+2026-01-19 16:13:18.983 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:13:18.989 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:13:19.026 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:13:19.026 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:13:19.027 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:13:23.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:13:23.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:13:23.991 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:13:23.991 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:13:23.991 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:13:28.158 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 从数据库加载 1 个任务
+2026-01-19 16:13:28.158 [JavaFX Application Thread] DEBUG com.ztxa.client.ui.TransferListController - 加载任务: fileName=electron, status=失败
+2026-01-19 16:13:28.201 [JavaFX Application Thread] DEBUG com.ztxa.client.ui.TransferListController - 当前下载中: 0 个, 最大并发: 1
+2026-01-19 16:13:28.202 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 启动 0 个等待中的任务
+2026-01-19 16:13:28.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:13:28.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:13:28.994 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 200
+2026-01-19 16:13:28.997 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 后端返回的文件列表数据: [
+	{
+		"checksum":"",
+		"fileId":"2013155800616472577",
+		"fileName":"electron",
+		"filePath":"",
+		"fileSize":151525312,
+		"fileType":"",
+		"timestamp":1768810410505
+	}
+]
+2026-01-19 16:13:29.013 [Timer-0] INFO  com.ztxa.client.service.FileListService - 成功获取文件列表，共 1 个文件
+2026-01-19 16:13:29.013 [Timer-0] INFO  com.ztxa.client.FileTransferApp - 轮询到 1 个文件
+2026-01-19 16:13:29.013 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 添加下载任务: 1 个文件
+2026-01-19 16:13:29.013 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 检测到同名文件夹冲突，自动更名为: electron(1)
+2026-01-19 16:13:29.014 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 添加新下载任务: fileName=electron, savePath=C:\Users\admin\Downloads\electron(1)
+2026-01-19 16:13:29.021 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 实际添加了 1 个新任务
+2026-01-19 16:13:29.022 [JavaFX Application Thread] DEBUG com.ztxa.client.ui.TransferListController - 当前下载中: 0 个, 最大并发: 1
+2026-01-19 16:13:29.022 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 启动 1 个等待中的任务
+2026-01-19 16:13:29.022 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 开始下载: fileName=electron, fileId=2013155800616472577, fileSize=151525312
+2026-01-19 16:13:29.023 [JavaFX Application Thread] INFO  com.ztxa.client.service.FileDownloadService - [下载入口] 启动下载线程: fileName=electron, fileId=2013155800616472577, fileSize=151525312, status=等待中
+2026-01-19 16:13:29.024 [JavaFX Application Thread] DEBUG com.ztxa.client.service.FileDownloadService - [下载入口] 下载线程已提交: electron
+2026-01-19 16:13:29.024 [JavaFX Application Thread] DEBUG com.ztxa.client.FileTransferApp - 任务数量: 1 -> 2
+2026-01-19 16:13:29.024 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - [下载线程] 线程已启动，准备调用 doDownload(): electron
+2026-01-19 16:13:29.024 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 准备下载: downloadIdentifier=2013155800616472577, serverHost=172.16.6.145, tcpPort=9122
+2026-01-19 16:13:29.025 [Thread-5] INFO  com.ztxa.client.service.FileDownloadService - 开始下载: fileId=2013155800616472577, fileName=electron, startPosition=0
+2026-01-19 16:13:29.025 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 连接服务器: 172.16.6.145:9122
+2026-01-19 16:13:29.026 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 连接成功，Socket: Socket[addr=/172.16.6.145,port=9122,localport=54457]
+2026-01-19 16:13:29.027 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 重新下载模式：已清空旧文件内容
+2026-01-19 16:13:29.034 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 发送协议包: 总长度=34, 数据长度=28, 数据内容=abc123|2013155800616472577|0
+2026-01-19 16:13:29.035 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 协议包已发送，等待服务端响应...
+2026-01-19 16:13:29.035 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 开始读取服务端响应...
+2026-01-19 16:13:29.037 [Thread-5] INFO  com.ztxa.client.service.FileDownloadService - 服务端响应: OK
+2026-01-19 16:13:29.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 定位文件指针到: 0 bytes
+2026-01-19 16:13:29.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 开始接收文件数据，缓冲区大小: 65536 bytes
+2026-01-19 16:13:30.038 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 11832040/151525312 bytes, 速度: 11554.73 KB/s
+2026-01-19 16:13:31.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 23662220/151525312 bytes, 速度: 11552.91 KB/s
+2026-01-19 16:13:32.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 35507200/151525312 bytes, 速度: 11567.36 KB/s
+2026-01-19 16:13:33.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 47344460/151525312 bytes, 速度: 11559.82 KB/s
+2026-01-19 16:13:33.983 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:13:33.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:13:33.995 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:13:33.995 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:13:33.995 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:13:34.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 59173380/151525312 bytes, 速度: 11551.68 KB/s
+2026-01-19 16:13:35.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 71010020/151525312 bytes, 速度: 11559.22 KB/s
+2026-01-19 16:13:36.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 82850620/151525312 bytes, 速度: 11563.09 KB/s
+2026-01-19 16:13:37.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 94687880/151525312 bytes, 速度: 11559.82 KB/s
+2026-01-19 16:13:38.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 106522840/151525312 bytes, 速度: 11557.58 KB/s
+2026-01-19 16:13:38.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:13:38.982 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:13:38.993 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:13:38.993 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:13:38.993 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:13:39.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 118361780/151525312 bytes, 速度: 11561.46 KB/s
+2026-01-19 16:13:40.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 130190700/151525312 bytes, 速度: 11551.68 KB/s
+2026-01-19 16:13:41.037 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 142037140/151525312 bytes, 速度: 11568.79 KB/s
+2026-01-19 16:13:41.839 [Thread-5] INFO  com.ztxa.client.service.FileDownloadService - 下载完成: fileName=electron, downloadedSize=151525312, fileSize=151525312
+2026-01-19 16:13:41.841 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 已关闭 RandomAccessFile: fileName=electron
+2026-01-19 16:13:41.842 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - 已关闭 Socket: fileName=electron
+2026-01-19 16:13:41.842 [Thread-5] DEBUG com.ztxa.client.service.FileDownloadService - [下载线程] 线程结束: electron
+2026-01-19 16:13:41.852 [JavaFX Application Thread] DEBUG com.ztxa.client.ui.TransferListController - 当前下载中: 0 个, 最大并发: 1
+2026-01-19 16:13:41.853 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 启动 0 个等待中的任务
+2026-01-19 16:13:43.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:13:43.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:13:43.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:13:43.988 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:13:43.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:13:48.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:13:48.982 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:13:48.987 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:13:48.987 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:13:48.987 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:13:53.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:13:53.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:13:53.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:13:53.991 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:13:53.991 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:13:58.985 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:13:58.985 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:13:59.005 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:13:59.006 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:13:59.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:03.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:03.986 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:03.993 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:03.993 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:03.993 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:08.985 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:08.985 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:09.005 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:09.006 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:09.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:13.985 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:13.985 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:14.005 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:14.005 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:14.006 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:18.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:18.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:19.018 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:19.019 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:19.019 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:23.989 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:23.989 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:24.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:24.008 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:24.008 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:28.986 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:28.986 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:29.006 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:29.006 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:29.008 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:33.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:33.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:34.009 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:34.011 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:34.014 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:38.985 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:38.986 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:39.004 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:39.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:39.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:43.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:43.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:44.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:44.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:44.005 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:48.993 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:48.993 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:49.020 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:49.020 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:49.020 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:53.997 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:53.999 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:54.017 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:54.018 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:54.018 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:14:58.991 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:14:58.991 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:14:59.011 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:14:59.012 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:14:59.012 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:03.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:03.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:04.004 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:04.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:04.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:08.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:08.982 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:09.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:09.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:09.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:13.983 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:13.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:14.004 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:14.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:14.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:18.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:18.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:19.011 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:19.011 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:19.011 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:23.986 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:23.986 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:23.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:23.990 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:23.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:28.989 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:28.989 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:29.008 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:29.008 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:29.008 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:33.994 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:33.994 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:34.002 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:34.002 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:34.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:38.992 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:38.992 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:39.004 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:39.006 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:39.006 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:43.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:43.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:44.001 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:44.002 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:44.002 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:48.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:48.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:48.991 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:48.991 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:48.991 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:53.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:53.982 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:53.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:15:53.991 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:15:53.991 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:15:58.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:15:58.982 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:15:58.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 200
+2026-01-19 16:15:58.991 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 后端返回的文件列表数据: [
+	{
+		"checksum":"",
+		"fileId":"2013155800616472577",
+		"fileName":"electron",
+		"filePath":"",
+		"fileSize":151525312,
+		"fileType":"",
+		"timestamp":1768810562699
+	}
+]
+2026-01-19 16:15:58.992 [Timer-0] INFO  com.ztxa.client.service.FileListService - 成功获取文件列表，共 1 个文件
+2026-01-19 16:15:58.992 [Timer-0] INFO  com.ztxa.client.FileTransferApp - 轮询到 1 个文件
+2026-01-19 16:15:58.993 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 添加下载任务: 1 个文件
+2026-01-19 16:15:58.994 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 检测到同名文件夹冲突，自动更名为: electron(1)
+2026-01-19 16:15:58.995 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 添加新下载任务: fileName=electron, savePath=C:\Users\admin\Downloads\electron(1)
+2026-01-19 16:15:59.001 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 实际添加了 1 个新任务
+2026-01-19 16:15:59.002 [JavaFX Application Thread] DEBUG com.ztxa.client.ui.TransferListController - 当前下载中: 0 个, 最大并发: 1
+2026-01-19 16:15:59.002 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 启动 1 个等待中的任务
+2026-01-19 16:15:59.002 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 开始下载: fileName=electron, fileId=2013155800616472577, fileSize=151525312
+2026-01-19 16:15:59.002 [JavaFX Application Thread] INFO  com.ztxa.client.service.FileDownloadService - [下载入口] 启动下载线程: fileName=electron, fileId=2013155800616472577, fileSize=151525312, status=等待中
+2026-01-19 16:15:59.003 [JavaFX Application Thread] DEBUG com.ztxa.client.service.FileDownloadService - [下载入口] 下载线程已提交: electron
+2026-01-19 16:15:59.003 [JavaFX Application Thread] DEBUG com.ztxa.client.FileTransferApp - 任务数量: 2 -> 3
+2026-01-19 16:15:59.003 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - [下载线程] 线程已启动，准备调用 doDownload(): electron
+2026-01-19 16:15:59.004 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 准备下载: downloadIdentifier=2013155800616472577, serverHost=172.16.6.145, tcpPort=9122
+2026-01-19 16:15:59.005 [Thread-6] INFO  com.ztxa.client.service.FileDownloadService - 文件已存在，根据设置【重新下载】: C:\Users\admin\Downloads\electron(1)
+2026-01-19 16:15:59.005 [Thread-6] INFO  com.ztxa.client.service.FileDownloadService - 开始下载: fileId=2013155800616472577, fileName=electron, startPosition=0
+2026-01-19 16:15:59.005 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 连接服务器: 172.16.6.145:9122
+2026-01-19 16:15:59.007 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 连接成功，Socket: Socket[addr=/172.16.6.145,port=9122,localport=54123]
+2026-01-19 16:15:59.008 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 重新下载模式：已清空旧文件内容
+2026-01-19 16:15:59.008 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 发送协议包: 总长度=34, 数据长度=28, 数据内容=abc123|2013155800616472577|0
+2026-01-19 16:15:59.009 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 协议包已发送，等待服务端响应...
+2026-01-19 16:15:59.009 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 开始读取服务端响应...
+2026-01-19 16:15:59.012 [Thread-6] INFO  com.ztxa.client.service.FileDownloadService - 服务端响应: OK
+2026-01-19 16:15:59.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 定位文件指针到: 0 bytes
+2026-01-19 16:15:59.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 开始接收文件数据，缓冲区大小: 65536 bytes
+2026-01-19 16:16:00.013 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 11832460/151525312 bytes, 速度: 11555.14 KB/s
+2026-01-19 16:16:01.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 23674940/151525312 bytes, 速度: 11564.92 KB/s
+2026-01-19 16:16:02.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 35508660/151525312 bytes, 速度: 11556.37 KB/s
+2026-01-19 16:16:03.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 47340500/151525312 bytes, 速度: 11554.53 KB/s
+2026-01-19 16:16:03.983 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:03.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:03.999 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:03.999 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:03.999 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:04.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 59167960/151525312 bytes, 速度: 11550.25 KB/s
+2026-01-19 16:16:05.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 71007100/151525312 bytes, 速度: 11561.66 KB/s
+2026-01-19 16:16:06.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 82842900/151525312 bytes, 速度: 11558.40 KB/s
+2026-01-19 16:16:07.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 94686000/151525312 bytes, 速度: 11565.53 KB/s
+2026-01-19 16:16:08.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 106520760/151525312 bytes, 速度: 11557.38 KB/s
+2026-01-19 16:16:08.983 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:08.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:08.992 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:08.992 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:08.993 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:09.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 118353440/151525312 bytes, 速度: 11555.35 KB/s
+2026-01-19 16:16:10.012 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 130193200/151525312 bytes, 速度: 11562.27 KB/s
+2026-01-19 16:16:11.013 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 下载进度: 142041520/151525312 bytes, 速度: 11559.07 KB/s
+2026-01-19 16:16:11.814 [Thread-6] INFO  com.ztxa.client.service.FileDownloadService - 下载完成: fileName=electron, downloadedSize=151525312, fileSize=151525312
+2026-01-19 16:16:11.815 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 已关闭 RandomAccessFile: fileName=electron
+2026-01-19 16:16:11.815 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - 已关闭 Socket: fileName=electron
+2026-01-19 16:16:11.815 [Thread-6] DEBUG com.ztxa.client.service.FileDownloadService - [下载线程] 线程结束: electron
+2026-01-19 16:16:11.819 [JavaFX Application Thread] DEBUG com.ztxa.client.ui.TransferListController - 当前下载中: 0 个, 最大并发: 1
+2026-01-19 16:16:11.819 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 启动 0 个等待中的任务
+2026-01-19 16:16:13.983 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:13.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:13.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:13.991 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:13.991 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:18.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:18.982 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:18.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:18.990 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:18.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:23.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:23.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:23.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:23.990 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:23.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:28.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:28.982 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:28.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:28.989 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:28.989 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:33.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:33.982 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:33.989 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:33.990 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:33.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:38.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:38.982 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:38.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:38.988 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:38.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:43.993 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:43.993 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:44.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:44.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:44.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:48.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:48.985 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:49.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:49.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:49.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:53.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:53.985 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:54.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:54.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:54.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:16:58.989 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:16:58.989 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:16:59.010 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:16:59.010 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:16:59.010 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:03.987 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:03.987 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:04.014 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:04.014 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:04.014 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:08.986 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:08.986 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:09.005 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:09.005 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:09.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:13.985 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:13.985 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:13.992 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:13.992 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:13.992 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:18.995 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:18.995 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:19.018 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:19.018 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:19.019 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:23.986 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:23.986 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:24.010 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:24.010 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:24.010 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:28.983 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:28.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:29.002 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:29.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:29.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:33.987 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:33.987 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:34.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:34.007 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:34.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:38.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:38.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:39.000 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:39.000 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:39.000 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:43.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:43.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:44.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:44.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:44.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:48.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:48.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:49.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:49.007 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:49.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:53.986 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:53.986 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:54.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:54.007 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:54.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:17:58.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:17:58.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:17:59.008 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:17:59.009 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:17:59.009 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:03.983 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:03.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:04.004 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:04.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:04.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:08.991 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:08.991 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:09.011 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:09.012 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:09.012 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:13.982 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:13.982 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:14.001 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:14.001 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:14.002 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:18.986 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:18.987 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:19.006 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:19.007 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:19.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:23.989 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:23.989 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:24.010 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:24.010 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:24.010 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:28.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:28.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:29.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:29.007 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:29.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:33.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:33.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:34.013 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:34.013 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:34.013 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:38.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:38.985 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:39.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:39.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:39.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:43.991 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:43.991 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:44.010 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:44.010 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:44.010 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:48.996 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:48.996 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:49.019 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:49.020 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:49.020 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:53.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:53.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:54.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:54.007 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:54.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:18:58.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:18:58.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:18:59.008 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:18:59.008 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:18:59.008 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:03.987 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:03.987 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:04.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:04.007 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:04.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:08.987 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:08.987 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:09.006 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:09.006 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:09.006 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:13.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:13.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:14.004 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:14.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:14.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:18.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:18.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:19.009 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:19.010 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:19.010 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:23.991 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:23.993 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:24.012 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:24.013 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:24.013 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:28.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:28.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:29.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:29.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:29.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:33.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:33.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:34.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:34.008 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:34.008 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:38.987 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:38.987 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:39.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:39.007 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:39.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:43.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:43.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:44.010 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:44.010 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:44.011 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:48.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:48.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:49.004 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:49.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:49.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:53.987 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:53.987 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:54.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:54.007 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:54.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:19:58.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:19:58.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:19:59.002 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:19:59.002 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:19:59.002 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:03.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:03.989 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:04.008 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:04.008 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:04.008 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:08.989 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:08.989 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:09.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:09.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:09.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:13.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:13.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:14.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:14.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:14.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:18.989 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:18.989 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:18.995 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:18.995 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:18.995 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:23.983 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:23.983 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:23.991 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:23.991 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:23.991 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:28.984 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:28.984 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:29.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:29.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:29.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:33.993 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:33.993 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:34.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:34.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:34.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:38.994 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:38.994 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:39.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:39.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:39.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:43.987 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:43.987 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:44.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:44.007 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:44.007 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:48.985 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:48.985 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:49.005 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:49.006 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:49.006 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:53.992 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:53.992 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:54.011 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:54.011 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:54.011 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:20:58.988 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:20:58.988 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:20:59.007 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:20:59.008 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:20:59.008 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:03.986 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:03.986 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:04.005 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:04.005 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:04.005 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:08.992 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:08.993 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:09.011 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:09.012 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:09.012 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:13.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:13.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:14.010 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:14.010 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:14.011 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:18.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:18.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:19.009 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:19.009 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:19.010 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:23.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:23.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:24.003 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:24.003 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:24.003 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:28.989 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:28.989 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:29.002 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:29.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:29.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:33.986 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:33.986 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:34.005 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:34.005 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:34.006 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:38.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:38.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:38.990 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:38.990 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:38.990 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:41.023 [JavaFX Application Thread] INFO  com.ztxa.client.service.FileListService - 文件列表服务已关闭
+2026-01-19 16:21:45.062 [IPC-Server] INFO  com.ztxa.client.service.IpcService - IPC 服务端已启动，监听端口: 9123
+2026-01-19 16:21:45.301 [JavaFX Application Thread] INFO  com.ztxa.client.service.FileListService - 文件列表服务已初始化
+2026-01-19 16:21:45.302 [JavaFX Application Thread] INFO  com.ztxa.client.FileTransferApp - 启动文件轮询任务，间隔: 5 秒
+2026-01-19 16:21:46.302 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:46.309 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:46.348 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:46.348 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:46.349 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:51.303 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:51.304 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:51.313 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:51.313 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:51.313 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:21:56.302 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:21:56.303 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:21:56.311 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:21:56.311 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:21:56.313 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:01.303 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:01.304 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:01.313 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:01.313 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:01.314 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:06.303 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:06.304 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:06.312 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:06.312 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:06.312 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:11.304 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:11.304 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:11.313 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:11.314 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:11.314 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:16.302 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:16.303 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:16.310 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:16.310 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:16.310 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:21.302 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:21.302 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:21.307 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:21.307 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:21.308 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:26.302 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:26.302 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:26.309 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:26.310 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:26.310 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:31.317 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:31.318 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:31.336 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:31.336 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:31.336 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:36.317 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:36.317 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:36.338 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:36.339 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:36.339 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:41.311 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:41.311 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:41.333 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:41.334 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:41.335 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:46.311 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:46.312 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:46.324 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:46.324 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:46.324 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:51.312 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:51.313 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:51.334 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:51.334 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:51.334 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:22:56.307 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:22:56.307 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:22:56.328 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:22:56.329 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:22:56.329 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:01.309 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:01.310 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:01.329 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:01.330 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:01.330 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:06.313 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:06.313 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:06.325 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:06.325 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:06.325 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:11.311 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:11.313 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:11.331 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:11.332 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:11.332 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:16.312 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:16.312 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:16.331 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:16.331 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:16.331 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:21.315 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:21.315 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:21.335 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:21.335 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:21.335 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:26.312 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:26.313 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:26.325 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:26.325 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:26.325 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:31.313 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:31.314 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:31.319 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:31.319 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:31.319 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:36.312 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:36.313 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:36.333 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:36.334 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:36.334 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:41.312 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:41.313 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:41.332 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:41.332 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:41.332 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:46.303 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:46.303 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:46.315 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:46.316 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:46.316 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:51.312 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:51.312 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:51.332 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:51.332 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:51.332 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:23:56.307 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:23:56.307 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:23:56.326 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:23:56.326 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:23:56.326 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:24:01.312 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:24:01.312 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:24:01.331 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:24:01.331 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:24:01.331 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:24:06.307 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:24:06.307 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:24:06.326 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:24:06.326 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:24:06.326 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:24:11.302 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:24:11.302 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:24:11.320 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:24:11.320 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:24:11.320 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:24:16.308 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 开始轮询文件列表...
+2026-01-19 16:24:16.308 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 请求文件列表: http://172.16.6.145:8522/downloadApi/files?page=1&pageSize=100 (page=1, pageSize=100)
+2026-01-19 16:24:16.327 [Timer-0] DEBUG com.ztxa.client.service.FileListService - 文件列表响应状态码: 204
+2026-01-19 16:24:16.327 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-19 16:24:16.327 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
+2026-01-19 16:24:18.738 [JavaFX Application Thread] INFO  com.ztxa.client.service.FileListService - 文件列表服务已关闭

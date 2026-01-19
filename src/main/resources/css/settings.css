@@ -26,15 +26,52 @@
 }
 
 /* 输入框样式 - 覆盖BootstrapFX */
-.text-field {
-    -fx-padding: 10px 14px;
+.text-field, .combo-box {
+    -fx-padding: 6px 14px;
     -fx-font-size: 14px;
     -fx-background-radius: 4px;
     -fx-border-radius: 4px;
+    -fx-background-color: white;
+    -fx-border-color: #ced4da;
+    -fx-border-width: 1px;
 }
 
-.text-field:focused {
-    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.4), 5, 0, 0, 0);
+.text-field:focused, .combo-box:focused {
+    -fx-border-color: #80bdff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 123, 255, 0.25), 5, 0, 0, 0);
+}
+
+/* 下拉框特殊样式 */
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #495057;
+    -fx-padding: 4px 8px;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #6c757d;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #ced4da;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #f8f9fa;
+    -fx-text-fill: #007bff;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
 }
 
 /* 按钮增强 - 配合BootstrapFX的btn类 */
