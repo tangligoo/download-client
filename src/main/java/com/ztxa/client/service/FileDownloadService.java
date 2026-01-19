@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class FileDownloadService {
     private static final Logger logger = LoggerFactory.getLogger(FileDownloadService.class);
-    private static final int BUFFER_SIZE = 8192;
+    private static final int BUFFER_SIZE = 65536; // 64KB 缓冲区，减少读写频率并适应高速网络
     
     // 存储每个任务的 Socket，用于取消时关闭
     private final Map<DownloadTask, Socket> activeSockets = new ConcurrentHashMap<>();
@@ -86,6 +86,7 @@ public class FileDownloadService {
         try {
             logger.debug("连接服务器: {}:{}", serverHost, tcpPort);
             socket = new Socket(serverHost, tcpPort);
+            socket.setSoTimeout(30000); // 设置 30 秒读取超时，防止网络卡死导致线程永久阻塞
             activeSockets.put(task, socket);  // 保存 Socket 引用
             logger.debug("连接成功，Socket: {}", socket);
             
@@ -115,7 +116,9 @@ public class FileDownloadService {
             logger.debug("协议包已发送，等待服务端响应...");
             
             // 读取响应状态（假设服务端返回 UTF-8 字符串）
-            DataInputStream dataIn = new DataInputStream(in);
+            // 使用 BufferedInputStream 包装，提高读取效率并配合 TCP 背压
+            BufferedInputStream bis = new BufferedInputStream(in, BUFFER_SIZE);
+            DataInputStream dataIn = new DataInputStream(bis);
             logger.debug("开始读取服务端响应...");
             String response = dataIn.readUTF();
             logger.info("服务端响应: {}", response);
@@ -137,7 +140,9 @@ public class FileDownloadService {
             
             logger.debug("开始接收文件数据，缓冲区大小: {} bytes", BUFFER_SIZE);
             
-            while ((bytesRead = dataIn.read(buffer)) != -1) {
+            // 循环读取数据。增加 downloadedSize < task.getFileSize() 判断，确保读够了就退出，
+            // 避免在服务端未关闭连接的情况下阻塞在最后的 read() 调用上。
+            while (downloadedSize < task.getFileSize() && (bytesRead = dataIn.read(buffer)) != -1) {
                 totalRead += bytesRead;
                 
                 // 检查取消状态
@@ -210,9 +215,12 @@ public class FileDownloadService {
                     }
                 } else {
                     // 连接提前关闭但未下载完成
-                    logger.warn("连接关闭但未下载完成: fileName={}, downloadedSize={}, fileSize={}",
+                    task.setStatus(DownloadTask.Status.FAILED);
+                    logger.warn("下载中断（连接已关闭或读取超时）: fileName={}, 已下载={}, 总大小={}",
                         task.getFileName(), downloadedSize, task.getFileSize());
-                    // 保持当前状态，允许用户继续下载
+                    if (listener != null) {
+                        listener.onError(task, new IOException("Download interrupted: connection closed prematurely"));
+                    }
                 }
             }
             

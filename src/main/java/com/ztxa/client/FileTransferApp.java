@@ -25,6 +25,7 @@ import javax.swing.SwingUtilities;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -83,6 +84,7 @@ public class FileTransferApp extends Application {
         
         // 不显示主窗口,直接最小化到托盘
         primaryStage.setTitle("文件传输客户端");
+        primaryStage.getIcons().add(getAppIcon());
         primaryStage.hide();
     }
     
@@ -176,6 +178,19 @@ public class FileTransferApp extends Application {
     }
     
     private java.awt.Image createTrayImage() {
+        return swingImageToAwtImage(getAppIconImage());
+    }
+
+    private javafx.scene.image.Image getAppIcon() {
+        java.awt.image.BufferedImage bimg = getAppIconImage();
+        return javafx.embed.swing.SwingFXUtils.toFXImage(bimg, null);
+    }
+
+    private java.awt.image.BufferedImage swingImageToAwtImage(java.awt.image.BufferedImage bimg) {
+        return bimg;
+    }
+
+    private java.awt.image.BufferedImage getAppIconImage() {
         // 使用 64x64 的高分辨率画布，让图标在缩放时更清晰
         int size = 64;
         java.awt.image.BufferedImage image = new java.awt.image.BufferedImage(size, size, java.awt.image.BufferedImage.TYPE_INT_ARGB);
@@ -265,6 +280,7 @@ public class FileTransferApp extends Application {
                 transferController = loader.getController();
                 transferStage = new Stage();
                 transferStage.setTitle("文件传输列表");
+                transferStage.getIcons().add(getAppIcon());
                 transferStage.setScene(scene);
                 
                 // 关闭窗口时隐藏而不是退出
@@ -297,6 +313,7 @@ public class FileTransferApp extends Application {
             controller.setStage(settingsStage);
             
             settingsStage.setTitle("设置");
+            settingsStage.getIcons().add(getAppIcon());
             settingsStage.setScene(scene);
             settingsStage.setResizable(false);
             settingsStage.show();

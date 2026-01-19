@@ -134,15 +134,30 @@ public class FileTransferServer {
     }
     
     private static void handleTcpClient(Socket clientSocket) {
-        try (DataInputStream in = new DataInputStream(clientSocket.getInputStream());
-             DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream())) {
+        try (InputStream in = clientSocket.getInputStream();
+             BufferedInputStream bis = new BufferedInputStream(in, 65536);
+             DataInputStream dataIn = new DataInputStream(bis);
+             OutputStream out = clientSocket.getOutputStream();
+             DataOutputStream dataOut = new DataOutputStream(out)) {
             
-            // 读取请求: appKey|filePath|startPosition
-            String request = in.readUTF();
+            // 读取自定义协议头: 2字节命令(0x20 0x20) + 4字节长度 + 数据内容
+            byte[] header = new byte[2];
+            dataIn.readFully(header);
+            
+            if (header[0] != 0x20 || header[1] != 0x20) {
+                dataOut.writeUTF("ERROR: Invalid protocol header");
+                return;
+            }
+            
+            int dataLength = dataIn.readInt();
+            byte[] dataBytes = new byte[dataLength];
+            dataIn.readFully(dataBytes);
+            
+            String request = new String(dataBytes, "UTF-8");
             String[] parts = request.split("\\|"); 
             
             if (parts.length != 3) {
-                out.writeUTF("ERROR: Invalid request format");
+                dataOut.writeUTF("ERROR: Invalid request format");
                 return;
             }
             
@@ -152,38 +167,38 @@ public class FileTransferServer {
             
             // 验证AppKey
             if (!VALID_APP_KEYS.contains(appKey)) {
-                out.writeUTF("ERROR: Invalid App Key");
+                dataOut.writeUTF("ERROR: Invalid App Key");
                 return;
             }
             
             // 检查文件是否存在
             File file = new File(SHARE_DIR, filePath);
             if (!file.exists() || !file.isFile()) {
-                out.writeUTF("ERROR: File not found");
+                dataOut.writeUTF("ERROR: File not found");
                 return;
             }
             
             // 检查起始位置是否有效
             if (startPosition < 0 || startPosition > file.length()) {
-                out.writeUTF("ERROR: Invalid start position");
+                dataOut.writeUTF("ERROR: Invalid start position");
                 return;
             }
             
-            out.writeUTF("OK");
-            out.flush();
+            dataOut.writeUTF("OK");
+            dataOut.flush();
             
             // 发送文件内容
             try (RandomAccessFile raf = new RandomAccessFile(file, "r")) {
                 raf.seek(startPosition);
                 
-                byte[] buffer = new byte[8192];
+                byte[] buffer = new byte[65536]; // 使用 64KB 缓冲区
                 int bytesRead;
                 
                 while ((bytesRead = raf.read(buffer)) != -1) {
-                    out.write(buffer, 0, bytesRead);
+                    dataOut.write(buffer, 0, bytesRead);
                 }
                 
-                out.flush();
+                dataOut.flush();
                 System.out.println("文件传输完成: " + filePath + " (从位置 " + startPosition + ")");
             }
             
