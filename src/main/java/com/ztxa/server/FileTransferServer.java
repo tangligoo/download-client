@@ -1,7 +1,7 @@
-package com.qoder.server;
+package com.ztxa.server;
 
 import com.google.gson.Gson;
-import com.qoder.server.model.FileInfo;
+import com.ztxa.server.model.FileInfo;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;

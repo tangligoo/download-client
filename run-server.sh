@@ -15,4 +15,4 @@ if [ ! -d "share" ]; then
     echo "已创建共享目录: share"
 fi
 
-mvn compile exec:java -Dexec.mainClass="com.qoder.server.FileTransferServer"
+mvn compile exec:java -Dexec.mainClass="com.ztxa.server.FileTransferServer"

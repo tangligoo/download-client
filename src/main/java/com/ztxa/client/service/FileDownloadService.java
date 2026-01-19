@@ -1,8 +1,8 @@
-package com.qoder.client.service;
+package com.ztxa.client.service;
 
-import com.qoder.client.config.AppConfig;
-import com.qoder.client.model.DownloadTask;
-import com.qoder.client.util.BytesDecimalismUtils;
+import com.ztxa.client.config.AppConfig;
+import com.ztxa.client.model.DownloadTask;
+import com.ztxa.client.util.BytesDecimalismUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

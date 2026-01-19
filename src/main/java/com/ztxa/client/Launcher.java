@@ -1,4 +1,4 @@
-package com.qoder.client;
+package com.ztxa.client;
 
 /**
  * 启动器类，用于规避 JavaFX 运行时组件丢失的问题

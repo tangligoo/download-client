@@ -1,6 +1,6 @@
-package com.qoder.client.database;
+package com.ztxa.client.database;
 
-import com.qoder.client.model.DownloadTask;
+import com.ztxa.client.model.DownloadTask;
 
 import java.sql.*;
 import java.util.ArrayList;

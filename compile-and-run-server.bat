@@ -23,7 +23,7 @@ if not exist "lib\gson-2.10.1.jar" (
 )
 
 echo 正在编译服务端...
-javac -encoding UTF-8 -d out -cp "lib\*" src\main\java\com\qoder\server\*.java src\main\java\com\qoder\server\model\*.java
+javac -encoding UTF-8 -d out -cp "lib\*" src\main\java\com\ztxa\server\*.java src\main\java\com\ztxa\server\model\*.java
 
 if %ERRORLEVEL% NEQ 0 (
     echo 编译失败!
@@ -37,6 +37,6 @@ echo TCP端口: 9090
 echo 共享目录: ./share
 echo.
 
-java -cp "out;lib\*" com.qoder.server.FileTransferServer
+java -cp "out;lib\*" com.ztxa.server.FileTransferServer
 
 pause

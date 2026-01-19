@@ -19,6 +19,6 @@ REM 设置使用Java 21
 set JAVA_HOME=D:\Program Files\Java\jdk-21
 set PATH=%JAVA_HOME%\bin;%PATH%
 
-mvn compile exec:java -Dexec.mainClass="com.qoder.server.FileTransferServer"
+mvn compile exec:java -Dexec.mainClass="com.ztxa.server.FileTransferServer"
 
 pause

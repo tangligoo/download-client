@@ -1,4 +1,4 @@
-package com.qoder.client.service;
+package com.ztxa.client.service;
 
 import java.io.File;
 import java.io.RandomAccessFile;

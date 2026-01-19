@@ -1,11 +1,11 @@
-package com.qoder.client.service;
+package com.ztxa.client.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.reflect.TypeToken;
-import com.qoder.client.config.AppConfig;
-import com.qoder.client.model.FileInfo;
+import com.ztxa.client.config.AppConfig;
+import com.ztxa.client.model.FileInfo;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;

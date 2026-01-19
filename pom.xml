@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.qoder</groupId>
+    <groupId>com.ztxa</groupId>
     <artifactId>file-transfer-client</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -95,7 +95,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.qoder.client.FileTransferApp</mainClass>
+                    <mainClass>com.ztxa.client.FileTransferApp</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -103,7 +103,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>com.qoder.server.FileTransferServer</mainClass>
+                    <mainClass>com.ztxa.server.FileTransferServer</mainClass>
                 </configuration>
             </plugin>
         </plugins>

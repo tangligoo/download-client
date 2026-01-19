@@ -1,4 +1,4 @@
-package com.qoder.client.util;
+package com.ztxa.client.util;
 
 import java.nio.ByteBuffer;
 

@@ -1,4 +1,4 @@
-package com.qoder.client.model;
+package com.ztxa.client.model;
 
 public class FileInfo {
     private String fileId;        // 文件ID（后端SpringBoot返回）

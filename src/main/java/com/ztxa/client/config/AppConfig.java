@@ -1,7 +1,7 @@
-package com.qoder.client.config;
+package com.ztxa.client.config;
 
 import com.google.gson.Gson;
-import com.qoder.client.database.ConfigDAO;
+import com.ztxa.client.database.ConfigDAO;
 import java.io.*;
 import java.nio.file.*;
 import java.security.SecureRandom;

@@ -1,4 +1,4 @@
-package com.qoder.server.model;
+package com.ztxa.server.model;
 
 public class FileInfo {
     private String fileName;

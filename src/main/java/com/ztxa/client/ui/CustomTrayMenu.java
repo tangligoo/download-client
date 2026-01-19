@@ -1,4 +1,4 @@
-package com.qoder.client.ui;
+package com.ztxa.client.ui;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;

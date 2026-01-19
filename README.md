@@ -13,9 +13,9 @@
 ## 项目结构
 
 ```
-qoder/
+ztxa/
 ├── src/main/java/
-│   └── com/qoder/
+│   └── com/ztxa/
 │       ├── client/              # 客户端代码
 │       │   ├── FileTransferApp.java          # 主应用程序
 │       │   ├── config/
@@ -60,7 +60,7 @@ mvn clean package
 mvn compile
 
 # 运行服务端
-mvn exec:java -Dexec.mainClass="com.qoder.server.FileTransferServer"
+mvn exec:java -Dexec.mainClass="com.ztxa.server.FileTransferServer"
 ```
 
 服务端会自动创建 `./share` 目录作为共享文件夹。你可以将需要传输的文件放入该目录。

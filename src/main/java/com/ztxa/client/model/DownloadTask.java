@@ -1,4 +1,4 @@
-package com.qoder.client.model;
+package com.ztxa.client.model;
 
 import javafx.beans.property.*;
 

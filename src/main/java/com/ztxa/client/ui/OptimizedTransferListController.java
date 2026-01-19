@@ -1,11 +1,11 @@
-package com.qoder.client.ui;
+package com.ztxa.client.ui;
 
-import com.qoder.client.config.AppConfig;
-import com.qoder.client.database.DownloadTaskDAO;
-import com.qoder.client.model.DownloadTask;
-import com.qoder.client.model.FileInfo;
-import com.qoder.client.service.FileDownloadService;
-import com.qoder.client.service.FileListService;
+import com.ztxa.client.config.AppConfig;
+import com.ztxa.client.database.DownloadTaskDAO;
+import com.ztxa.client.model.DownloadTask;
+import com.ztxa.client.model.FileInfo;
+import com.ztxa.client.service.FileDownloadService;
+import com.ztxa.client.service.FileListService;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

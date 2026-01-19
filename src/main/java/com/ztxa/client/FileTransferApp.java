@@ -1,12 +1,14 @@
-package com.qoder.client;
+package com.ztxa.client;
 
-import com.qoder.client.config.AppConfig;
-import com.qoder.client.model.FileInfo;
-import com.qoder.client.service.FileListService;
-import com.qoder.client.service.InstanceLockService;
-import com.qoder.client.ui.CustomTrayMenu;
-import com.qoder.client.ui.SettingsController;
-import com.qoder.client.ui.TransferListController;
+import com.ztxa.client.config.AppConfig;
+import com.ztxa.client.model.FileInfo;
+import com.ztxa.client.service.FileListService;
+import com.ztxa.client.service.InstanceLockService;
+import com.ztxa.client.ui.CustomTrayMenu;
+import com.ztxa.client.ui.SettingsController;
+import com.ztxa.client.ui.TransferListController;
+import com.ztxa.client.service.IpcService;
+import com.ztxa.client.service.ProtocolHandlerService;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -43,14 +45,26 @@ public class FileTransferApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         
+        // 获取启动参数
+        List<String> args = getParameters().getRaw();
+        String startupUrl = args.isEmpty() ? null : args.get(0);
+        
         // 1. 检查单实例锁
         AppConfig config = AppConfig.getInstance();
         if (!InstanceLockService.acquireLock(config.getConfigDir())) {
-            showAlreadyRunningAlert();
+            // 如果已经运行，尝试通过 IPC 发送启动参数
+            if (startupUrl != null && startupUrl.startsWith("ztxa://")) {
+                IpcService.sendMessage(startupUrl);
+            } else {
+                showAlreadyRunningAlert();
+            }
             Platform.exit();
             System.exit(0);
             return;
         }
+        
+        // 启动 IPC 服务端监听新实例的消息
+        IpcService.startServer(this::handleProtocolUrl);
         
         // 设置系统托盘
         Platform.setImplicitExit(false);
@@ -62,9 +76,27 @@ public class FileTransferApp extends Application {
         // 启动定时任务
         startPollingTask();
         
+        // 处理自身的启动参数
+        if (startupUrl != null) {
+            handleProtocolUrl(startupUrl);
+        }
+        
         // 不显示主窗口,直接最小化到托盘
         primaryStage.setTitle("文件传输客户端");
         primaryStage.hide();
+    }
+    
+    private void handleProtocolUrl(String url) {
+        FileInfo info = ProtocolHandlerService.parseUrl(url);
+        if (info != null) {
+            logger.info("处理协议下载请求: {}", info.getFileName());
+            Platform.runLater(() -> {
+                showTransferList();
+                if (transferController != null) {
+                    transferController.addDownloadTasks(java.util.Collections.singletonList(info));
+                }
+            });
+        }
     }
     
     private void showAlreadyRunningAlert() {
@@ -135,6 +167,7 @@ public class FileTransferApp extends Application {
 
     private void handleExit() {
         stopPollingTask();
+        IpcService.stopServer();
         if (fileListService != null) {
             fileListService.close();
         }

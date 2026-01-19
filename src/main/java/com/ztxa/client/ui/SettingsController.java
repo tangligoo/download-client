@@ -1,6 +1,7 @@
-package com.qoder.client.ui;
+package com.ztxa.client.ui;
 
-import com.qoder.client.config.AppConfig;
+import com.ztxa.client.config.AppConfig;
+import com.ztxa.client.service.ProtocolRegistrationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -124,6 +125,12 @@ public class SettingsController {
         if (stage != null) {
             stage.close();
         }
+    }
+
+    @FXML
+    private void handleRegisterProtocol() {
+        ProtocolRegistrationService.register();
+        showInfo("协议注册请求已发送。如果成功，您现在可以在浏览器中使用 ztxa://download?fileId=xxx&fileName=xxx&fileSize=xxx 格式唤起下载。");
     }
     
     public void setStage(Stage stage) {
