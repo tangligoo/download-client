@@ -176,11 +176,12 @@ public class FileDownloadService {
                 
                 raf.write(buffer, 0, bytesRead);
                 downloadedSize += bytesRead;
-                task.setDownloadedSize(downloadedSize);
                 
-                // 计算速度
+                // 计算速度和更新进度
                 long currentTime = System.currentTimeMillis();
                 if (currentTime - lastUpdateTime >= 1000) {
+                    task.setDownloadedSize(downloadedSize);
+                    
                     long timeDiff = currentTime - lastUpdateTime;
                     long sizeDiff = downloadedSize - lastDownloadedSize;
                     double speedKB = (sizeDiff / 1024.0) / (timeDiff / 1000.0);
@@ -197,6 +198,9 @@ public class FileDownloadService {
                     }
                 }
             }
+            
+            // 确保最后一次进度更新
+            task.setDownloadedSize(downloadedSize);
             
             // 关闭文件写入
             if (raf != null) {

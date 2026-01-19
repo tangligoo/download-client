@@ -69,6 +69,9 @@ public class TransferListController {
         
         // 2. 设置表格空白区域右键菜单
         setupTableContextMenu();
+
+        // 3. 启动等待中的下载 (支持重启自动恢复)
+        startPendingDownloads();
     }
 
     private void setupRowContextMenu() {
@@ -193,19 +196,26 @@ public class TransferListController {
         List<DownloadTask> savedTasks = taskDAO.getAllTasks();
         logger.info("从数据库加载 {} 个任务", savedTasks.size());
         
+        List<DownloadTask> resumedTasks = new ArrayList<>();
+        List<DownloadTask> otherTasks = new ArrayList<>();
+
         for (DownloadTask task : savedTasks) {
-            tasks.add(task);
             String status = task.getStatus();
             logger.debug("加载任务: fileName={}, status={}", task.getFileName(), status);
             
-            // 如果任务未完成，不自动开始下载，等待用户手动继续
+            // 如果任务在退出前处于下载中，恢复为等待中，并标记为高优先级
             if (status.equals(DownloadTask.Status.DOWNLOADING.getText())) {
-                // 正在下载的任务改为暂停状态
-                task.setStatus(DownloadTask.Status.PAUSED);
-                logger.info("任务设置为暂停状态: {}", task.getFileName());
+                task.setStatus(DownloadTask.Status.WAITING);
+                logger.info("将中断的任务恢复为等待状态（高优先级）: {}", task.getFileName());
+                resumedTasks.add(task);
+            } else {
+                otherTasks.add(task);
             }
-            // 不再自动启动下载，由用户手动点击“继续”
         }
+        
+        // 核心修复：将之前正在下载的任务放在列表最前面，确保 startPendingDownloads 优先启动它们
+        tasks.addAll(resumedTasks);
+        tasks.addAll(otherTasks);
     }
     
     public void addDownloadTasks(List<FileInfo> fileList) {

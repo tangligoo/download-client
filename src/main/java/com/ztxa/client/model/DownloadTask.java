@@ -110,8 +110,15 @@ public class DownloadTask {
     }
 
     public void setDownloadedSize(long size) {
-        this.downloadedSize.set(size);
-        this.progress.set((double) size / fileSize.get());
+        if (javafx.application.Platform.isFxApplicationThread()) {
+            this.downloadedSize.set(size);
+            this.progress.set(getFileSize() > 0 ? (double) size / getFileSize() : 0.0);
+        } else {
+            javafx.application.Platform.runLater(() -> {
+                this.downloadedSize.set(size);
+                this.progress.set(getFileSize() > 0 ? (double) size / getFileSize() : 0.0);
+            });
+        }
     }
 
     public LongProperty downloadedSizeProperty() {
@@ -131,7 +138,11 @@ public class DownloadTask {
     }
 
     public void setStatus(Status status) {
-        this.status.set(status.getText());
+        if (javafx.application.Platform.isFxApplicationThread()) {
+            this.status.set(status.getText());
+        } else {
+            javafx.application.Platform.runLater(() -> this.status.set(status.getText()));
+        }
     }
 
     public StringProperty statusProperty() {
@@ -143,7 +154,11 @@ public class DownloadTask {
     }
 
     public void setSpeed(String speed) {
-        this.speed.set(speed);
+        if (javafx.application.Platform.isFxApplicationThread()) {
+            this.speed.set(speed);
+        } else {
+            javafx.application.Platform.runLater(() -> this.speed.set(speed));
+        }
     }
 
     public StringProperty speedProperty() {
