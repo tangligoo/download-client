@@ -226,23 +226,64 @@ public class TransferListController {
         
         // 第一步：批量创建任务，不立即开始下载
         for (FileInfo fileInfo : fileList) {
-            // 使用fileId作为唯一标识
-            String identifier = fileInfo.getFileId() != null ? fileInfo.getFileId() : fileInfo.getFilePath();
-            logger.debug("处理文件: {}, fileId={}, fileSize={}", fileInfo.getFileName(), identifier, fileInfo.getFileSize());
+            // 基础校验：必须有文件名
+            if (fileInfo.getFileName() == null || fileInfo.getFileName().trim().isEmpty()) {
+                logger.warn("跳过无效任务：文件名为空, fileId={}", fileInfo.getFileId());
+                continue;
+            }
             
-            // 检查是否有正在处理的任务（仅检查 DOWNLOADING/PAUSED/WAITING 状态）
+            // 拼接本地保存路径：下载根目录 + 相对目录 + 文件名
+            String relativeDir = fileInfo.getFilePath();
+            if (relativeDir == null) relativeDir = "";
+            
+            // 规范化相对路径
+            relativeDir = relativeDir.replace("/", File.separator).replace("\\", File.separator);
+            
+            // 去掉开头的分隔符，避免出现双斜杠
+            while (relativeDir.startsWith(File.separator)) {
+                relativeDir = relativeDir.substring(1);
+            }
+            
+            File downloadRoot = new File(config.getDownloadPath());
+            File saveFile;
+            
+            if (relativeDir.isEmpty()) {
+                saveFile = new File(downloadRoot, fileInfo.getFileName());
+            } else {
+                if (!relativeDir.endsWith(File.separator)) {
+                    relativeDir += File.separator;
+                }
+                saveFile = new File(downloadRoot, relativeDir + fileInfo.getFileName());
+            }
+            
+            // 自动避让同名文件夹冲突：如果该路径已经是一个文件夹，则为文件重命名（例如 electron -> electron(1)）
+            if (saveFile.exists() && saveFile.isDirectory()) {
+                int count = 1;
+                String baseName = fileInfo.getFileName();
+                String extension = "";
+                int dotIndex = baseName.lastIndexOf('.');
+                if (dotIndex > 0) {
+                    extension = baseName.substring(dotIndex);
+                    baseName = baseName.substring(0, dotIndex);
+                }
+                
+                File tempFile = saveFile;
+                while (tempFile.exists() && tempFile.isDirectory()) {
+                    tempFile = new File(saveFile.getParentFile(), baseName + "(" + count + ")" + extension);
+                    count++;
+                }
+                saveFile = tempFile;
+                logger.info("检测到同名文件夹冲突，自动更名为: {}", saveFile.getName());
+            }
+            
+            String savePath = saveFile.getAbsolutePath();
+
+            // 检查是否有正在处理的任务
+            // 根据用户要求：只判断相同目录下的同名文件。即使 fileId 相同，如果保存路径不同也视为不同任务。
             boolean isProcessing = tasks.stream()
                     .anyMatch(task -> {
-                        // 匹配 fileId
-                        boolean idMatch = false;
-                        if (task.getFileId() != null && fileInfo.getFileId() != null) {
-                            idMatch = task.getFileId().equals(fileInfo.getFileId());
-                        } else {
-                            idMatch = task.getFilePath().equals(identifier);
-                        }
-                        
-                        // 只在状态为正在处理时返回 true
-                        if (idMatch) {
+                        // 通过本地保存路径来唯一判断任务，这能保证“同目录下同名文件”的唯一性
+                        if (task.getSavePath() != null && task.getSavePath().equals(savePath)) {
                             String status = task.getStatus();
                             return status.equals(DownloadTask.Status.DOWNLOADING.getText()) ||
                                    status.equals(DownloadTask.Status.PAUSED.getText()) ||
@@ -253,25 +294,23 @@ public class TransferListController {
             
             // 如果正在处理，跳过
             if (isProcessing) {
-                logger.debug("文件正在处理中，跳过: {}", identifier);
+                logger.debug("该路径文件正在处理中，跳过: {}", savePath);
                 continue;
             }
             
             // 已完成/已取消/失败的任务保留，新文件作为新任务添加
-            logger.info("添加新下载任务: fileName={}, fileId={}", fileInfo.getFileName(), identifier);
+            logger.info("添加新下载任务: fileName={}, savePath={}", fileInfo.getFileName(), savePath);
             
-            // 添加新任务
-            String savePath = config.getDownloadPath() + File.separator + fileInfo.getFileName();
             DownloadTask task;
             
-            // 如果有fileId，使用fileId构造函数
+            // 如果有fileId，使用新构造函数保存 fileId 和 相对路径 filePath
             if (fileInfo.getFileId() != null) {
                 task = new DownloadTask(
                         fileInfo.getFileId(),
                         fileInfo.getFileName(),
+                        fileInfo.getFilePath(),
                         fileInfo.getFileSize(),
-                        savePath,
-                        true  // useFileId = true
+                        savePath
                 );
             } else {
                 // 兼容旧版本，使用filePath

@@ -60,13 +60,13 @@ public class DownloadTaskDAO {
                 DownloadTask task;
                 
                 if (fileId != null && !fileId.isEmpty()) {
-                    // 使用fileId构造
+                    // 使用新构造函数
                     task = new DownloadTask(
                         fileId,
                         rs.getString("file_name"),
+                        rs.getString("file_path"),
                         rs.getLong("file_size"),
-                        rs.getString("save_path"),
-                        true
+                        rs.getString("save_path")
                     );
                 } else {
                     // 兼容旧数据，使用filePath构造
@@ -120,13 +120,13 @@ public class DownloadTaskDAO {
                 DownloadTask task;
                 
                 if (fileId != null && !fileId.isEmpty()) {
-                    // 使用fileId构造
+                    // 使用新构造函数
                     task = new DownloadTask(
                         fileId,
                         rs.getString("file_name"),
+                        rs.getString("file_path"),
                         rs.getLong("file_size"),
-                        rs.getString("save_path"),
-                        true
+                        rs.getString("save_path")
                     );
                 } else {
                     // 兼容旧数据，使用filePath构造
@@ -193,9 +193,9 @@ public class DownloadTaskDAO {
                     task = new DownloadTask(
                         fileId,
                         rs.getString("file_name"),
+                        rs.getString("file_path"),
                         rs.getLong("file_size"),
-                        rs.getString("save_path"),
-                        true
+                        rs.getString("save_path")
                     );
                 } else {
                     task = new DownloadTask(

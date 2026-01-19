@@ -18,6 +18,7 @@ public class AppConfig {
     private String downloadPath = System.getProperty("user.home") + File.separator + "Downloads";
     private int pollInterval = 5; // 秒
     private int maxConcurrentDownloads = 3; // 最大同时下载数
+    private String fileExistsBehavior = "SKIP"; // 文件存在时的行为：SKIP (跳过), OVERWRITE (覆盖)
     private String appKey;
     
     private static AppConfig instance;
@@ -64,6 +65,7 @@ public class AppConfig {
         downloadPath = configDAO.getConfig("downloadPath", downloadPath);
         pollInterval = configDAO.getIntConfig("pollInterval", pollInterval);
         maxConcurrentDownloads = configDAO.getIntConfig("maxConcurrentDownloads", maxConcurrentDownloads);
+        fileExistsBehavior = configDAO.getConfig("fileExistsBehavior", fileExistsBehavior);
     }
     
     private void generateAndSaveAppKey() {
@@ -151,6 +153,15 @@ public class AppConfig {
     public void setMaxConcurrentDownloads(int maxConcurrentDownloads) {
         this.maxConcurrentDownloads = maxConcurrentDownloads;
         configDAO.saveConfig("maxConcurrentDownloads", String.valueOf(maxConcurrentDownloads));
+    }
+    
+    public String getFileExistsBehavior() {
+        return fileExistsBehavior;
+    }
+    
+    public void setFileExistsBehavior(String fileExistsBehavior) {
+        this.fileExistsBehavior = fileExistsBehavior;
+        configDAO.saveConfig("fileExistsBehavior", fileExistsBehavior);
     }
     
     public String getAppKey() {

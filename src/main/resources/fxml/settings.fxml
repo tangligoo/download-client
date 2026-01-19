@@ -49,11 +49,14 @@
         <TextField fx:id="maxConcurrentField" GridPane.columnIndex="1" GridPane.rowIndex="5" 
                    promptText="3" prefWidth="150"/>
         
-        <Label text="AppKey:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-        <TextField fx:id="appKeyField" styleClass="appkey-field" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+        <Label text="文件已存在时:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+        <ComboBox fx:id="fileExistsBehaviorField" GridPane.columnIndex="1" GridPane.rowIndex="6" prefWidth="150"/>
         
-        <Label text="浏览器调用:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-        <Button text="注册 ztxa:// 协议" styleClass="btn, btn-info" onAction="#handleRegisterProtocol" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+        <Label text="AppKey:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+        <TextField fx:id="appKeyField" styleClass="appkey-field" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+        
+        <Label text="浏览器调用:" styleClass="settings-label" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+        <Button text="注册 ztxa:// 协议" styleClass="btn, btn-info" onAction="#handleRegisterProtocol" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
     </GridPane>
     
     <Separator/>

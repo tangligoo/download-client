@@ -4,6 +4,7 @@ import com.ztxa.client.config.AppConfig;
 import com.ztxa.client.service.ProtocolRegistrationService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -24,6 +25,8 @@ public class SettingsController {
     @FXML
     private TextField maxConcurrentField;
     @FXML
+    private ComboBox<String> fileExistsBehaviorField;
+    @FXML
     private TextField appKeyField;
     
     private Stage stage;
@@ -37,6 +40,14 @@ public class SettingsController {
         downloadPathField.setText(config.getDownloadPath());
         pollIntervalField.setText(String.valueOf(config.getPollInterval()));
         maxConcurrentField.setText(String.valueOf(config.getMaxConcurrentDownloads()));
+        
+        fileExistsBehaviorField.getItems().addAll("跳过 (断点续传)", "重新下载 (覆盖)");
+        if ("OVERWRITE".equals(config.getFileExistsBehavior())) {
+            fileExistsBehaviorField.getSelectionModel().select("重新下载 (覆盖)");
+        } else {
+            fileExistsBehaviorField.getSelectionModel().select("跳过 (断点续传)");
+        }
+        
         appKeyField.setText(config.getAppKey());
     }
     
@@ -65,6 +76,8 @@ public class SettingsController {
             String downloadPath = downloadPathField.getText().trim();
             int pollInterval = Integer.parseInt(pollIntervalField.getText().trim());
             int maxConcurrent = Integer.parseInt(maxConcurrentField.getText().trim());
+            String behavior = fileExistsBehaviorField.getSelectionModel().getSelectedItem();
+            String fileExistsBehavior = behavior.contains("重新下载") ? "OVERWRITE" : "SKIP";
             String appKey = appKeyField.getText().trim();
             
             if (serverHost.isEmpty()) {
@@ -109,6 +122,7 @@ public class SettingsController {
             config.setDownloadPath(downloadPath);
             config.setPollInterval(pollInterval);
             config.setMaxConcurrentDownloads(maxConcurrent);
+            config.setFileExistsBehavior(fileExistsBehavior);
             config.setAppKey(appKey);
             
             showInfo("设置保存成功");

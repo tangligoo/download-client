@@ -49,16 +49,12 @@ public class DownloadTask {
         this.cancelled = false;
     }
     
-    // 新构造函数：支持fileId（通过布尔值区分）
-    public DownloadTask(String fileId, String fileName, long fileSize, String savePath, boolean useFileId) {
-        this.taskId = String.valueOf(System.currentTimeMillis());  // 生成时间戳作为 taskId
-        if (useFileId) {
-            this.fileId = fileId;
-            this.filePath = fileId; // 兼容旧代码
-        } else {
-            this.filePath = fileId; // 当作路径使用
-        }
+    // 新构造函数：支持 fileId 和 filePath
+    public DownloadTask(String fileId, String fileName, String filePath, long fileSize, String savePath) {
+        this.taskId = String.valueOf(System.currentTimeMillis());
+        this.fileId = fileId;
         this.fileName = new SimpleStringProperty(fileName);
+        this.filePath = filePath;
         this.fileSize = new SimpleLongProperty(fileSize);
         this.downloadedSize = new SimpleLongProperty(0);
         this.progress = new SimpleDoubleProperty(0.0);
@@ -67,6 +63,11 @@ public class DownloadTask {
         this.savePath = savePath;
         this.paused = false;
         this.cancelled = false;
+    }
+    
+    // 兼容旧构造函数
+    public DownloadTask(String fileId, String fileName, long fileSize, String savePath, boolean useFileId) {
+        this(useFileId ? fileId : null, fileName, useFileId ? null : fileId, fileSize, savePath);
     }
 
     public String getTaskId() {

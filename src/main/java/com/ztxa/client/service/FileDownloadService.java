@@ -53,22 +53,37 @@ public class FileDownloadService {
         logger.debug("准备下载: downloadIdentifier={}, serverHost={}, tcpPort={}", downloadIdentifier, serverHost, tcpPort);
         
         File saveFile = new File(task.getSavePath());
+        
+        // 再次安全检查：如果此时目标路径依然是目录（可能是手动创建的），则报错
+        if (saveFile.exists() && saveFile.isDirectory()) {
+            throw new IOException("无法写入文件，目标路径已被文件夹占用: " + saveFile.getAbsolutePath());
+        }
+        
         File parentDir = saveFile.getParentFile();
         if (parentDir != null && !parentDir.exists()) {
             parentDir.mkdirs();
             logger.debug("创建目录: {}", parentDir.getAbsolutePath());
         }
         
+        // 检查设置：文件存在时的行为
+        boolean overwrite = "OVERWRITE".equals(config.getFileExistsBehavior());
+        
         // 检查已下载的大小
         long downloadedSize = 0;
         if (saveFile.exists()) {
-            downloadedSize = saveFile.length();
-            task.setDownloadedSize(downloadedSize);
-            logger.debug("文件已存在，续传位置: {} bytes", downloadedSize);
+            if (overwrite) {
+                logger.info("文件已存在，根据设置【重新下载】: {}", saveFile.getAbsolutePath());
+                // 如果是重新下载，不设置 downloadedSize，后续会从 0 开始写入并覆盖
+                // 也可以选择在这里删除文件，但 RandomAccessFile "rw" 模式配合 raf.seek(0) 也能实现覆盖
+            } else {
+                downloadedSize = saveFile.length();
+                task.setDownloadedSize(downloadedSize);
+                logger.debug("文件已存在，根据设置【续传】位置: {} bytes", downloadedSize);
+            }
         }
         
-        // 如果已经下载完成
-        if (downloadedSize >= task.getFileSize()) {
+        // 如果已经下载完成 (仅在非覆盖模式下检查)
+        if (!overwrite && downloadedSize >= task.getFileSize()) {
             logger.info("文件已下载完成，跳过: fileName={}, fileSize={}", task.getFileName(), task.getFileSize());
             task.setDownloadedSize(task.getFileSize());
             task.setStatus(DownloadTask.Status.COMPLETED);
@@ -93,6 +108,12 @@ public class FileDownloadService {
             OutputStream out = socket.getOutputStream();
             InputStream in = socket.getInputStream();
             raf = new RandomAccessFile(saveFile, "rw");
+            
+            // 如果是重新下载模式且从头开始，清空文件内容
+            if (overwrite && downloadedSize == 0) {
+                raf.setLength(0);
+                logger.debug("重新下载模式：已清空旧文件内容");
+            }
             
             // 构建请求数据: appKey|fileId|startPosition
             String requestData = config.getAppKey() + "|" + downloadIdentifier + "|" + downloadedSize;
