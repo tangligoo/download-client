@@ -214,3 +214,61 @@
 .status-cancelled {
     -fx-text-fill: #9e9e9e;
 }
+
+/* 选项卡 (TabPane) 美化 */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 10 0 10;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.tab-pane .tab {
+    -fx-background-color: transparent;
+    -fx-padding: 8 20 8 20;
+    -fx-background-insets: 0;
+    -fx-cursor: hand;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: #f8f9fa;
+}
+
+.tab-pane .tab .tab-label {
+    -fx-text-fill: #6c757d;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+
+.tab-pane .tab:hover .tab-label {
+    -fx-text-fill: #495057;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: #007bff;
+    -fx-border-width: 0 0 3px 0;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #007bff;
+    -fx-font-weight: bold;
+}
+
+/* 隐藏 TabPane 默认的焦点虚线框 */
+.tab-pane .tab:focused .tab-content-area {
+    -fx-background-insets: 0;
+}
+
+.tab-pane .tab-container .tab {
+    -fx-background-insets: 0;
+}

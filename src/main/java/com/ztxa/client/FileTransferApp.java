@@ -233,9 +233,9 @@ public class FileTransferApp extends Application {
                         Platform.runLater(() -> {
                             // 只有在有新任务时才自动打开窗口
                             if (transferController != null) {
-                                int beforeSize = transferController.getTasks().size();
+                                int beforeSize = transferController.getActiveTasks().size();
                                 transferController.addDownloadTasks(fileList);
-                                int afterSize = transferController.getTasks().size();
+                                int afterSize = transferController.getActiveTasks().size();
                                 
                                 logger.debug("任务数量: {} -> {}", beforeSize, afterSize);
                                 

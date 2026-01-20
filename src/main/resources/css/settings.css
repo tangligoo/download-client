@@ -27,7 +27,7 @@
 
 /* 输入框样式 - 覆盖BootstrapFX */
 .text-field, .combo-box {
-    -fx-padding: 6px 14px;
+    -fx-padding: 10px 14px;
     -fx-font-size: 14px;
     -fx-background-radius: 4px;
     -fx-border-radius: 4px;
