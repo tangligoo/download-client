@@ -80,7 +80,7 @@ public class FileListService {
                 logger.info("成功获取文件列表，共 {} 个文件", files != null ? files.size() : 0);
                 return files;
             } else if (statusCode == 204) {
-                logger.info("服务端返回 204 No Content，暂无文件");
+                logger.debug("服务端返回 204 No Content，暂无文件");
                 return new ArrayList<>();
             } else {
                 logger.error("获取文件列表失败，状态码: {}", statusCode);

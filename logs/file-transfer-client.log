@@ -2703,3 +2703,42 @@
 2026-01-20 09:57:19.004 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
 2026-01-20 09:57:19.004 [Timer-0] DEBUG com.ztxa.client.FileTransferApp - 暂无文件
 2026-01-20 09:57:23.591 [JavaFX Application Thread] INFO  com.ztxa.client.service.FileListService - 文件列表服务已关闭
+2026-01-20 14:10:53.091 [IPC-Server] INFO  com.ztxa.client.service.IpcService - IPC 服务端已启动，监听端口: 9123
+2026-01-20 14:10:53.522 [JavaFX Application Thread] INFO  com.ztxa.client.service.FileListService - 文件列表服务已初始化
+2026-01-20 14:10:53.523 [JavaFX Application Thread] INFO  com.ztxa.client.FileTransferApp - 启动文件轮询任务，间隔: 5 秒
+2026-01-20 14:10:54.620 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:10:57.052 [JavaFX Application Thread] INFO  com.ztxa.client.ui.TransferListController - 从数据库加载 0 个任务
+2026-01-20 14:10:59.538 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:04.536 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:09.533 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:14.535 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:19.535 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:24.535 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:29.537 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:34.534 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:39.532 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:44.535 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:49.534 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:54.536 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:11:59.535 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:04.534 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:09.534 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:14.536 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:19.533 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:24.534 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:29.535 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:34.533 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:39.528 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:44.533 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:49.535 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:54.532 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:12:59.534 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:13:04.533 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:13:09.535 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:13:14.533 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:13:19.533 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:13:24.533 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:13:29.533 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:13:34.533 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:13:39.534 [Timer-0] INFO  com.ztxa.client.service.FileListService - 服务端返回 204 No Content，暂无文件
+2026-01-20 14:13:41.929 [JavaFX Application Thread] INFO  com.ztxa.client.service.FileListService - 文件列表服务已关闭

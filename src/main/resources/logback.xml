@@ -30,7 +30,7 @@
     </root>
 
     <!-- 特定包的日志级别 -->
-    <logger name="com.ztxa.client" level="DEBUG" />
+    <logger name="com.ztxa.client" level="INFO" />
     
     <!-- 屏蔽第三方库的调试日志 -->
     <logger name="org.apache.http" level="WARN" />
